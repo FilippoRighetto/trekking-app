@@ -24,9 +24,11 @@ public class UserController {
 		return userService.registerUser(user);
 	}
 	
-	@PostMapping("/login")
-	public String login(@RequestParam String username, @RequestParam String password) {
-		return userService.loginUser(username, password);
+	@GetMapping("/login")
+	public Utente login(@RequestParam String email, @RequestParam String password) {
+	    System.out.println("EMAIL: " + email);
+	    System.out.println("PASSWORD: " + password);
+	    return userService.loginUser(email, password);
 	}
 	
 	@GetMapping("/profile")

@@ -1,0 +1,57 @@
+        <section class="contenitoreRegistrazione">
+            <p class="formTitle">Registrati</p>
+            <div class="contenitoreForm">
+                <form class="formRegistrazione" (ngSubmit)="onSubmit(form)" #form="ngForm">
+                    <mat-form-field>
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text" name="nome" [(ngModel)]="utente.nome" required  pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$" #nome="ngModel" placeholder="Nome">
+                        <mat-error *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+                            Inserisci solo lettere
+                        </mat-error>
+                    </mat-form-field>
+                
+                    <mat-form-field>
+                        <mat-label>Cognome</mat-label>
+                        <input matInput type="text" name="cognome" [(ngModel)]="utente.cognome" required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$" #cognome="ngModel" placeholder="Cognome">
+                        <mat-error *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+                            Inserisci solo lettere
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" name="username" [(ngModel)]="utente.username" pattern="^[a-zA-Z0-9_.-]+$" required #username="ngModel" placeholder="Username">
+                        <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">
+                            Inserisci solo lettere, numeri, . _ -
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" name="email" [(ngModel)]="utente.email" required email #email="ngModel" placeholder="Email">
+                        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                            Inserisci una email valida
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" name="password" [(ngModel)]="utente.password" required minlength="6" #password="ngModel" placeholder="Password">
+                        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+                            Password troppo corta (min 6 caratteri)
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Salva</button>
+                </form>
+            </div>
+            <div class="errore">
+                <p *ngIf="erroreEmail">{{ erroreEmail }}</p>
+                <p *ngIf="erroreUsername">{{ erroreUsername }}</p>
+                <p *ngIf="erroreGenerico">{{ erroreGenerico }}</p>
+                <p *ngIf="erroreEmailUsername">{{ erroreEmailUsername }}</p>
+            </div>
+            <div class="successo">
+                <p *ngIf="successo" class="successo">{{ successo }}</p>
+            </div>
+        </section>

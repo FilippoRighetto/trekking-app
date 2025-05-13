@@ -1,0 +1,46 @@
+body {
+  background-color: lightgrey;
+}
+
+.contenitoreRegistrazione{
+  display: flex;
+  flex-direction: column;
+  padding-top: 4em; 
+  align-items: center;
+  height: 100%;
+}
+
+.formTitle{
+  font-size: 2em;
+  padding-bottom: 1em;
+}
+
+.contenitoreForm{
+  display: flex; 
+  flex-direction: row;
+  gap: 1em;
+}
+
+.formRegistrazione {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 20em;
+  width: 100%;
+}
+
+.button {
+  align-self: center;
+}
+
+.errore{
+    font-size: large;
+    color: red;
+    margin-top: 1em;
+}
+
+.successo{
+    font-size: large;
+    color: green;
+    margin-top: 1em;
+}

@@ -24,39 +24,42 @@ public class UserService {
 	
 	//METODI
 	public Utente registerUser(Utente user) {
-		//controllo se email già presente
-		if(userRepository.findByEmail(user.getEmail()).isPresent()) {
-			throw new RuntimeException("Email già in uso");
-		}
-		//controllo se username già presente
-		if(userRepository.findByUsername(user.getUsername()).isPresent()) {
-			throw new RuntimeException("Username già in uso");
-		}
-		
-		//cifratura della password
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		
-		user.setDataDiRegistrazione(LocalDate.now());
-		
-		return userRepository.save(user);
+	    boolean emailEsiste = userRepository.findByEmail(user.getEmail()).isPresent();
+	    boolean usernameEsiste = userRepository.findByUsername(user.getUsername()).isPresent();
+
+	    if (emailEsiste && usernameEsiste) {
+	        throw new RuntimeException("1");
+	    }
+	    if (emailEsiste) {
+	        throw new RuntimeException("2");
+	    }
+	    if (usernameEsiste) {
+	        throw new RuntimeException("3");
+	    }
+
+	    user.setPassword(passwordEncoder.encode(user.getPassword()));
+	    user.setDataDiRegistrazione(LocalDate.now());
+
+	    return userRepository.save(user);
 	}
 	
 	
-	public String loginUser(String username, String password) {
+	
+	public Utente loginUser(String email, String password) {
 		
-		Utente user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Username non trovato"));
+		Utente user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("1"));
 		
 		if(!passwordEncoder.matches(password, user.getPassword())) {
-			throw new RuntimeException("Password errata!");
+			throw new RuntimeException("2");
 		}
-		return "Login effettuato con successo per " + user.getUsername();
+		return user;
 	}
+	
 	
 	
 	public Utente getProfile(String username) {
-	    Optional<Utente> userOptional = userRepository.findByUsername(username);
-	    return userOptional.orElseThrow(() -> 
-	        new RuntimeException("L'utente con username '" + username + "' non è stato trovato"));
+	    Utente user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Username non trovato"));
+	    return user;
 	}
 	
 	
@@ -64,9 +67,22 @@ public class UserService {
 	public Utente updateProfile(String username, Utente updatedUser) {
 		Utente user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Utente non trovato"));
 		
+		if(!user.getEmail().equals(updatedUser.getEmail())) {
+			if(userRepository.findByEmail(updatedUser.getEmail()).isPresent()) {					//controllo se email già presente
+				throw new RuntimeException("Email già in uso");
+			}
+		}
+		
+		if(!user.getUsername().equals(updatedUser.getUsername())) {
+			if(userRepository.findByUsername(updatedUser.getUsername()).isPresent()) {				//controllo se username già presente
+				throw new RuntimeException("Username già in usooooo");
+			}
+		}
+		
+		user.setEmail(updatedUser.getEmail());
+		user.setUsername(updatedUser.getUsername());
 		user.setNome(updatedUser.getNome());
 		user.setCognome(updatedUser.getCognome());
-		user.setEmail(updatedUser.getEmail());
 		
 		if(updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
 			user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));

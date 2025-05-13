@@ -1,0 +1,15 @@
+a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.titoloNavBar{
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 40px;
+}
+
+.active-link {
+  border-bottom: 2px solid white;
+}
