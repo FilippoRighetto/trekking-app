@@ -14,13 +14,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HomeComponent } from './componenti/home/home.component';
+import { PostTrekkingComponent } from './componenti/post-trekking/post-trekking.component';
+import { MatCardModule } from '@angular/material/card';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrazioneComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    PostTrekkingComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,8 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatButtonModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

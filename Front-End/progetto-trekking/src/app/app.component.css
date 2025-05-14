@@ -1,15 +1,60 @@
+.navbar {
+  background-color: #607D8B;
+  color: white;
+  padding: 0 16px;
+  position: relative; /* Necessario per posizionare correttamente il ::before */
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  left: 350px; 
+  right: 125px; 
+
+  background-image: url('/assets/Immagini/Montagnestilizzate.png');
+  height: 3.5em;
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-position: left;
+
+  opacity: 0.08;
+  z-index: 0; /* Sfondo, dietro al contenuto */
+  pointer-events: none; /* Non cliccabile */
+}
+
+.immagineToolbar{
+  height: 7.5em;  
+}
+
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button[mat-raised-button] {
+  border-radius: 20px;
+  background-color: #ECEFF1;
+}
+
 a {
   text-decoration: none;
   color: white;
   margin-right: 10px;
 }
 
-.titoloNavBar{
-    font-weight: bold;
-    font-size: 20px;
-    margin-right: 40px;
-}
-
 .active-link {
   border-bottom: 2px solid white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.accedi{
+  
 }

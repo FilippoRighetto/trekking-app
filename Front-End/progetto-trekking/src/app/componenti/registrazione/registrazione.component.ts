@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtenteService } from 'src/app/servizi/utente.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrazione',
@@ -25,7 +26,7 @@ export class RegistrazioneComponent implements OnInit{
   successo: string = '';
 
 
-  constructor(private utenteService: UtenteService){}
+  constructor(private utenteService: UtenteService, private router: Router){}
 
   ngOnInit(): void {}
 
@@ -48,6 +49,15 @@ export class RegistrazioneComponent implements OnInit{
       next: response => {
         console.log('Registrazione avvenuta con successo: ', response);
         this.successo = "Grazie per esserti registrato "  + this.utente.nome + " !";
+        this.utenteService.setUtenteLoggato(this.utente.username);
+
+        const redirectPath = localStorage.getItem('redirectAfterLogin');
+        if (redirectPath) {
+          localStorage.removeItem('redirectAfterLogin');
+          this.router.navigate([redirectPath]);
+        } else {
+          this.router.navigate(['/home']);
+        }
         form.resetForm();
       },
       error: (err) => {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UtenteService } from 'src/app/servizi/utente.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { UtenteService } from 'src/app/servizi/utente.service';
 export class LoginComponent implements OnInit{
 
   utente = {
+    username: '',
     email: '',
     password: '',
   };
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit{
   erroreEmailPass: string = '';
   loginEffettuato: string = '';
 
-  constructor(private utenteService: UtenteService){}
+  constructor(private utenteService: UtenteService, private router: Router){}
 
   ngOnInit(): void {}
 
@@ -38,7 +40,17 @@ export class LoginComponent implements OnInit{
     this.utenteService.login(this.utente.email, this.utente.password).subscribe({
       next: response => {
         console.log("Login effettuato", response);
+        this.utente.username = response.username;
         this.loginEffettuato = "Login effettuato correttamente!";
+        this.utenteService.setUtenteLoggato(response.username);
+
+        const redirectPath = localStorage.getItem('redirectAfterLogin');
+        if (redirectPath) {
+          localStorage.removeItem('redirectAfterLogin');
+          this.router.navigate([redirectPath]);
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error: (err) => {
         console.error("Errore in fase di login: ", err);

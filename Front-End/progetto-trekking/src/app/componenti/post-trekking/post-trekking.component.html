@@ -1,0 +1,14 @@
+<section *ngIf="!utenteLoggato" class="errore-login">
+  <mat-card>
+    <mat-card-content>
+      <p>{{ messaggioErrore }}</p>
+      <p>Verrai reindirizzato alla pagina di login...</p>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<section *ngIf="utenteLoggato">
+  <!-- Qui va il vero contenuto della pagina -->
+  <h2>Benvenuto nella pagina Trekking!</h2>
+  <!-- il resto della pagina -->
+</section>

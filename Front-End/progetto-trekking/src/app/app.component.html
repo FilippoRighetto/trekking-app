@@ -1,7 +1,12 @@
 
-<mat-toolbar color="primary">
-  <a mat-button routerLink="/">Home</a>
-  <a mat-button routerLink="/login">Accedi</a>
+<mat-toolbar class="navbar">
+  <img src="assets/Immagini/trekking-montagne-pini-adesivo-prespaziato.jpg" class="immagineToolbar" alt="Logo">
+  <a mat-button routerLink="/home">🏠 Home</a>
+  <a mat-button routerLink="/trekking">🥾 Trekking</a>
+  <span class="spacer"></span>
+   <span *ngIf="userLogged">{{ userLogged }}</span>
+  <button *ngIf="!userLogged" mat-raised-button  routerLink="/login">Accedi</button>
+  <button *ngIf="userLogged" mat-raised-button  (click)="logout()">Esci</button>
 </mat-toolbar>
 
 
