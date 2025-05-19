@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HomeComponent } from './componenti/home/home.component';
 import { PostTrekkingComponent } from './componenti/post-trekking/post-trekking.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -38,7 +39,8 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     HttpClientModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

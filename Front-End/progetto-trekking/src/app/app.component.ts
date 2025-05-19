@@ -5,23 +5,58 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'progetto-trekking';
 
-  userLogged: string = '';
+  utente = {
+    nome: '',
+    cognome: '',
+    username: '',
+    email: '',
+  };
 
-  constructor(private utenteService: UtenteService, private router: Router){}
+  constructor(private utenteService: UtenteService, private router: Router) {}
 
   ngOnInit(): void {
-    this.utenteService.utenteLoggato$.subscribe(username => {this.userLogged = username});
+    this.utenteService.utente$.subscribe((utente) => {
+      if (utente) {
+        this.utente = utente;
+      }
+    });
+
+    const token = sessionStorage.getItem('authToken');
+    if (token) {
+      //perchè token non può essere null, quindi dava errore
+      this.utenteService.getProfile(token).subscribe({
+        next: (utente) => {
+          this.utenteService.setUtente(utente);
+        },
+        error: (err) => {
+          console.error('Errore nel recuperare il profilo:', err);
+        },
+      });
+    }
   }
 
   logout() {
-  this.utenteService.logout();
-  this.userLogged = '';
-  this.router.navigate(['/']);
-}
-
+    const token = sessionStorage.getItem('authToken');
+    if (token) {
+      this.utenteService.logout(token).subscribe({
+        next: () => {
+          this.utente.nome = '';
+          this.utente.cognome = '';
+          this.utente.username = '';
+          this.utente.email = '';
+          sessionStorage.removeItem('authToken');
+          this.router.navigate(['/']);
+        },
+          error: (err) => {
+            console.error('Errore nel logout:', err);
+            alert(JSON.stringify(err));
+          }
+      });
+    }
+  }
 }

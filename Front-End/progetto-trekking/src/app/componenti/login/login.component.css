@@ -1,14 +1,25 @@
-body {
-  background-color: lightgrey;
+/*************************
+
+**************************/
+.contenitoreRegistrazione{
+  height: 33em;
+  width: 32em;
+  display: flex;
+  margin-top: 3em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.contenitoreRegistrazione{
+.credenzialiRegistrazione{
   display: flex;
   flex-direction: column;
   padding-top: 4em; 
   align-items: center;
-  height: 100%;
+  background-color: lightgrey;
+  width: 100%;
+  border-radius: 20px;
 }
+
 
 .formTitle{
   font-size: 2em;

@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { UtenteService } from 'src/app/servizi/utente.service';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
+import * as bcrypt from 'bcryptjs';
 
 
 @Component({
@@ -12,10 +13,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
   utente = {
-    username: '',
     email: '',
     password: '',
   };
+  username: string = '';
 
   erroreGenerico: string = '';
   erroreEmailPass: string = '';
@@ -32,33 +33,36 @@ export class LoginComponent implements OnInit{
     return true;
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(){
     this.erroreGenerico = '';
     this.erroreEmailPass = '';
     this.loginEffettuato = '';
 
+    const salt = '$2b$10$1234567890123456789012';                           
+    const hashedPassword = bcrypt.hashSync(this.utente.password, salt);   //creazione della pass criptata
+    this.utente.password = hashedPassword;
+
     this.utenteService.login(this.utente.email, this.utente.password).subscribe({
-      next: response => {
-        console.log("Login effettuato", response);
-        this.utente.username = response.username;
+      next: token => {
         this.loginEffettuato = "Login effettuato correttamente!";
-        this.utenteService.setUtenteLoggato(response.username);
+        sessionStorage.setItem('authToken', token);
+        this.notificaAppComponentLogin();
 
         const redirectPath = localStorage.getItem('redirectAfterLogin');
         if (redirectPath) {
           localStorage.removeItem('redirectAfterLogin');
           this.router.navigate([redirectPath]);
         } else {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         }
       },
       error: (err) => {
         console.error("Errore in fase di login: ", err);
 
-        const backendMsg = err.error?.message;
+        const backendMsg = err.error;
 
         if (backendMsg) {
-          if (backendMsg.includes("1") || backendMsg.includes("2")) {
+          if (backendMsg.includes("EMAIL_NON_TROVATA") || backendMsg.includes("PASSWORD_SBAGLIATA")) {
             this.erroreEmailPass = "Email o Password non corretta!";
           }else {
             this.erroreGenerico = "Errore generico in fase di login.";
@@ -68,7 +72,20 @@ export class LoginComponent implements OnInit{
         }
       }
     });
-    
+  }
+
+  notificaAppComponentLogin(){
+    const token = sessionStorage.getItem('authToken');
+    if (token) {                                              //perchè token non può essere null, quindi dava errore
+      this.utenteService.getProfile(token).subscribe({
+        next: (utente) => {
+          this.utenteService.setUtente(utente);
+        },
+        error: (err) => {
+          console.error('Errore: ' + err);
+        },
+      });
+    } else console.error('Token non presente in sessionStorage');
   }
 
 }

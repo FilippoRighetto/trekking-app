@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -9,30 +9,38 @@ export class UtenteService {
 
   private apiUrl = 'http://localhost:8080/api/user'
 
-  // Questa variabile serve a notificare chi è loggato
-  private utenteLoggatoSubject = new BehaviorSubject<string>(''); // nessuno all'inizio
-  utenteLoggato$ = this.utenteLoggatoSubject.asObservable(); // sarà usato per ascoltare il login
+  private utenteSubject = new BehaviorSubject<any>(null); // è un tipo speciale di subject  che mantiene sempre l'ultimo valore emesso. Quando un nuovo subscriber si iscrive, riceve subito l’ultimo valore. Serve a tenere in memoria uno stato dove altri componenti si possono iscrivere e ricevere in tempo reale gli aggiornamenti quando lo stato cambia.
+  utente$: Observable<any> = this.utenteSubject.asObservable(); // observable per ascoltare i cambiamenti
 
   constructor(private http:HttpClient){}
 
-  registrazione(utente: any): Observable<any>{
-    return this.http.post(`${this.apiUrl}/register`, utente);
+  registrazione(utente: any): Observable<boolean>{
+    return this.http.post<boolean>('http://localhost:8080/api/user/register', utente);
   }
 
   login(email: string, password: string): Observable<any> {
     const params = { email, password };
-    return this.http.get(`${this.apiUrl}/login`, { params });
+    return this.http.get(`${this.apiUrl}/login`, { params, responseType: 'text'});
   }
 
-    setUtenteLoggato(username: string) {
-      this.utenteLoggatoSubject.next(username);
-    }
+  logout(token: string): Observable<string> {  
+  const headers = { 'Authorization': token };  // Passa il token nell'header Authorization
+  return this.http.delete<string>(`${this.apiUrl}/logout`, { headers, responseType: 'text' as 'json' });
 
-    getUtenteAttuale(): string {
-      return this.utenteLoggatoSubject.getValue();
-    }
+}
 
-    logout() {
-      this.utenteLoggatoSubject.next('');
-    }
+  getProfile(token: string): Observable<any>{
+    const headers = {'Authorization': token};
+    return this.http.get(`${this.apiUrl}/profile`, { headers, responseType: 'json' });
+  }
+
+  setUtente(utente: any){
+    this.utenteSubject.next(utente);
+  }
+
+  clearUtente(){
+    this.utenteSubject.next(null);
+  }
+
+
 }

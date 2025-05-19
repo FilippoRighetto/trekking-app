@@ -1,23 +1,30 @@
         <section class="contenitoreRegistrazione">
+            <div class="credenzialiRegistrazione">
             <p class="formTitle">Login</p>
             <div class="contenitoreForm">
-                <form class="formRegistrazione" (ngSubmit)="onSubmit(form)" #form="ngForm">
+                <form class="formRegistrazione" (ngSubmit)="onSubmit()" #form="ngForm">
                     <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput type="email" name="email" [(ngModel)]="utente.email" required email #email="ngModel" placeholder="Email">
+                        <mat-label>
+                            <i class="bi bi-envelope"></i>
+                            Email
+                        </mat-label>
+                        <input matInput type="email" name="email" [(ngModel)]="utente.email" required email #email="ngModel" placeholder="Email">   <!-- email serve ad attivare la validazione email -->
                         <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
                             Inserisci una email valida
                         </mat-error>
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-label>Password</mat-label>
+                        <mat-label>
+                            <i class="bi bi-lock-fill"></i>
+                            Password
+                        </mat-label>
                         <input matInput type="password" name="password" [(ngModel)]="utente.password" required minlength="6" #password="ngModel" placeholder="Password">
                         <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
                             Password troppo corta (min 6 caratteri)
                         </mat-error>
                     </mat-form-field>
-                    <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Salva</button>
+                    <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Accedi</button>
                 </form>
             </div>
                 <div class="errore">
@@ -27,5 +34,7 @@
             <div class="successo">
                 <p *ngIf="loginEffettuato" class="successo">{{ loginEffettuato }}</p>
             </div>
-            <p>Se non hai ancora un account registrati qui <button mat-button color="accent" routerLink="/registrazione">REGISTRATI</button></p>
+            <p>Se non hai ancora un account <button mat-button color="accent" routerLink="/registrazione">REGISTRATI</button></p>
+            </div>
         </section>
+        

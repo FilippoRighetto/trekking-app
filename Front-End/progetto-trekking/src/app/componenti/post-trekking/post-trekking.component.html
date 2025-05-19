@@ -1,8 +1,8 @@
 <section *ngIf="!utenteLoggato" class="errore-login">
   <mat-card>
     <mat-card-content>
-      <p>{{ messaggioErrore }}</p>
-      <p>Verrai reindirizzato alla pagina di login...</p>
+      <p>Devi prima loggarti per accedere a questa pagina.</p>
+      <p>Effettua qui il <button mat-button color="accent" (click)="vaiALogin()">Login</button></p>
     </mat-card-content>
   </mat-card>
 </section>

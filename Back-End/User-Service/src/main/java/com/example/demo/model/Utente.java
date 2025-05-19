@@ -2,16 +2,21 @@ package com.example.demo.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Utente {
 	
 	//ATTRIBUTI
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(nullable = false, unique = true, length = 50)
 	private String username;
@@ -20,6 +25,7 @@ public class Utente {
 	private String email;
 	
 	@Column(nullable = false)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	
 	@Column(nullable = false, length = 50)
@@ -28,7 +34,7 @@ public class Utente {
 	@Column(nullable = false, length = 50)
 	private String cognome;
 	
-	@Column(name = "data_registrazione", nullable = false)
+	@Column(nullable = false)
 	private LocalDate dataRegistrazione;
 	
 	

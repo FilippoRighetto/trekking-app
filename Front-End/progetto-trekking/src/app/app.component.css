@@ -1,14 +1,18 @@
-.navbar {
+
+/****************************
+          TOOLBAR
+****************************/
+.toolbar {
   background-color: #607D8B;
   color: white;
   padding: 0 16px;
-  position: relative; /* Necessario per posizionare correttamente il ::before */
+  position: relative; 
 }
 
-.navbar::before {
+.toolbar::before {
   content: "";
   position: absolute;
-  left: 350px; 
+  left: 400px; 
   right: 125px; 
 
   background-image: url('/assets/Immagini/Montagnestilizzate.png');
@@ -26,35 +30,33 @@
   height: 7.5em;  
 }
 
+.toolbar a{
+  font-size: 0.9em;
+  margin-right: 10px;
+}
 
-.navbar a:hover {
+.toolbar a:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-bottom: 2px solid white;
 }
 
+.active-link {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
-button[mat-raised-button] {
+.toolbar button[mat-raised-button] {
   border-radius: 20px;
   background-color: #ECEFF1;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-  margin-right: 10px;
-}
 
-.active-link {
-  border-bottom: 2px solid white;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
-
-.accedi{
-  
+/****************************
+          CONTENUTO
+****************************/
+.contenuto{
+  height: 100%;
 }

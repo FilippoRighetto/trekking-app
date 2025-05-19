@@ -5,27 +5,35 @@ import { UtenteService } from 'src/app/servizi/utente.service';
 @Component({
   selector: 'app-post-trekking',
   templateUrl: './post-trekking.component.html',
-  styleUrls: ['./post-trekking.component.css']
+  styleUrls: ['./post-trekking.component.css'],
 })
-export class PostTrekkingComponent implements OnInit{
+export class PostTrekkingComponent implements OnInit {
 
-  constructor(private utenteService: UtenteService, private router: Router ){}
+  constructor(private utenteService: UtenteService, private router: Router) {}
 
-  messaggioErrore: string = '';
   utenteLoggato: boolean = false;
 
+  utente = {
+    nome: '',
+    cognome: '',
+    username: '',
+    email: '',
+  };
+
   ngOnInit(): void {
-    const utente = this.utenteService.getUtenteAttuale();
-    if (!utente) {
-      this.messaggioErrore = '⚠️ Devi prima loggarti per accedere a questa pagina.';
+    this.utenteService.utente$.subscribe((utente) => {
+      if (utente) {
+        this.utente = utente;
+        this.utenteLoggato = true;
+      }else{
+        this.utenteLoggato = false;
+      }
+
+    });
+  }
+
+    vaiALogin() {
       localStorage.setItem('redirectAfterLogin', '/trekking');
-      
-      // Aspettiamo 2 secondi prima di reindirizzare
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 2000);
-    } else {
-      this.utenteLoggato = true;
-    }
+      this.router.navigate(['/login']);
   }
 }

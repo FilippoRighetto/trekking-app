@@ -13,7 +13,7 @@
                     <mat-form-field>
                         <mat-label>Cognome</mat-label>
                         <input matInput type="text" name="cognome" [(ngModel)]="utente.cognome" required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$" #cognome="ngModel" placeholder="Cognome">
-                        <mat-error *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+                        <mat-error *ngIf="cognome.invalid && (cognome.dirty || cognome.touched)">
                             Inserisci solo lettere
                         </mat-error>
                     </mat-form-field>
@@ -35,11 +35,19 @@
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-label>Password</mat-label>
-                        <input matInput type="password" name="password" [(ngModel)]="utente.password" required minlength="6" #password="ngModel" placeholder="Password">
-                        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-                            Password troppo corta (min 6 caratteri)
-                        </mat-error>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" name="password" [(ngModel)]="utente.password" required minlength="6" #passwordModel="ngModel" placeholder="Password">
+                    <mat-error *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)">
+                        Password troppo corta (min 6 caratteri)
+                    </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                    <mat-label>Conferma password</mat-label>
+                    <input matInput type="password" name="confermaPassword" [(ngModel)]="confermaPassword" required minlength="6" #confermaModel="ngModel" placeholder="Conferma password">
+                    <mat-error *ngIf="confermaModel.invalid && (confermaModel.dirty || confermaModel.touched)">
+                        Password troppo corta (min 6 caratteri)
+                    </mat-error>
                     </mat-form-field>
 
                     <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Salva</button>

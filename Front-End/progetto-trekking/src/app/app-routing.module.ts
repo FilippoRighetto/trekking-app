@@ -6,7 +6,7 @@ import { HomeComponent } from './componenti/home/home.component';
 import { PostTrekkingComponent } from './componenti/post-trekking/post-trekking.component';
 
 const routes: Routes = [
-  {path:'home', component: HomeComponent},
+  {path:'', component: HomeComponent},
   {path:'trekking', component: PostTrekkingComponent},
   {path:'registrazione', component: RegistrazioneComponent},
   {path:'login', component: LoginComponent},

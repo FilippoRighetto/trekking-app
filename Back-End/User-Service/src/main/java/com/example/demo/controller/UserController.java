@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
+
 
 import com.example.demo.model.Utente;
 import com.example.demo.service.UserService;
@@ -20,24 +22,34 @@ public class UserController {
 	//metodi
 	
 	@PostMapping("/register")
-	public Utente register(@RequestBody Utente user) {
-		return userService.registerUser(user);
+	public boolean register(@RequestBody Utente user) {
+		userService.registerUser(user);
+		return true;	
 	}
 	
 	@GetMapping("/login")
-	public Utente login(@RequestParam String email, @RequestParam String password) {
-	    System.out.println("EMAIL: " + email);
-	    System.out.println("PASSWORD: " + password);
+	public String login(@RequestParam String email, @RequestParam String password) {
 	    return userService.loginUser(email, password);
 	}
 	
+	@DeleteMapping("/logout")
+	public String logOut(HttpServletRequest request) {
+	    String token = request.getHeader("Authorization");
+	    if (token == null || token.isBlank()) {
+	        throw new RuntimeException("Token mancante");
+	    }
+	    userService.logOutUser(token);
+	    return "Logout avvenuto con successo!";
+	}
+	
 	@GetMapping("/profile")
-	public Utente getProfile(@RequestParam String username) {
-		return userService.getProfile(username);
+	public Utente getProfile(HttpServletRequest request) {
+		return (Utente) request.getAttribute("utenteAutenticato");
 	}
 	
 	@PutMapping("/profile")
-	public Utente updateProfile(@RequestParam String username, @RequestBody Utente updatedUser) {
-		return userService.updateProfile(username, updatedUser);
+	public Utente updateProfile(HttpServletRequest request, @RequestBody Utente updatedUser) {
+	    Utente utente = (Utente) request.getAttribute("utenteAutenticato");
+		return userService.updateProfile(utente, updatedUser);
 	}
 }
