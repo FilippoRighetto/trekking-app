@@ -7,3 +7,18 @@ body { margin: 0;}
 html, body, app-root, * {
   font-family: 'Poppins', sans-serif !important;
 }
+
+.campoStondato .mat-mdc-text-field-wrapper {
+  border-radius: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+/* Per l'input interno */
+.campoStondato .mat-mdc-text-field-input {
+  border-radius: 20px;
+  background-color: transparent;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+

@@ -1,0 +1,101 @@
+<section class="contenitoreRegistrazione"> 
+  <div class="overlay"></div> <!-- Layer semitrasparente sopra lo sfondo -->
+
+  <div class="credenzialiRegistrazione">
+    <div class="visualDati">
+        <a mat-flat-button class="tornaVisDettagli" color="primary" (click)="apriChiudiModificaForm()"><strong><i class="bi bi-arrow-left"></i></strong></a>
+    </div>
+    <p class="formTitle">Credenziali account</p>
+    
+    <div *ngIf="!modificaForm" class="contenitoreCredenziali">
+        <mat-list role="list">
+            <mat-list-item role="listitem"><strong>Nome: </strong>{{utente.nome}}</mat-list-item>
+            <mat-list-item role="listitem"><strong>Cognome: </strong>{{utente.cognome}}</mat-list-item>
+            <mat-list-item role="listitem"><strong>Email: </strong>{{utente.email}}</mat-list-item>
+            <mat-list-item role="listitem"><strong>Username: </strong>{{utente.username}}</mat-list-item>
+        </mat-list>
+        <p>
+            Se desideri modificare i tuoi dati
+            <button mat-button color="accent" (click)="apriChiudiModificaForm()">Modifica</button>
+        </p>
+    </div>
+    <div class="contenitoreForm"  *ngIf="modificaForm">
+        <form class="formRegistrazione" (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <section class="sezioneCredenziali">
+                <p class="titleModCred"><strong>Dati personali</strong></p>
+                <p>Aggiorna i tuoi dati personali</p>
+                <div class="row">
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                    <mat-label>Nome</mat-label>
+                    <input matInput type="text" name="nome" [(ngModel)]="utente.nome" required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$" #nome="ngModel" placeholder="Nome">
+                    <mat-error *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+                        Inserisci solo lettere
+                    </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                    <mat-label>Cognome</mat-label>
+                    <input matInput type="text" name="cognome" [(ngModel)]="utente.cognome" required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$" #cognome="ngModel" placeholder="Cognome">
+                    <mat-error *ngIf="cognome.invalid && (cognome.dirty || cognome.touched)">
+                        Inserisci solo lettere
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" name="username" [(ngModel)]="utente.username" pattern="^[a-zA-Z0-9_.-]+$" required #username="ngModel" placeholder="Username">
+                    <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">
+                        Inserisci solo lettere, numeri, . _ -
+                    </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" name="email" [(ngModel)]="utente.email" required email #email="ngModel" placeholder="Email">
+                    <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                        Inserisci una email valida
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </section>
+            <section class="sezioneCredenziali">
+                <p class="titleModCred"><strong>Password account</strong></p>
+                <p>Aggiorna la password del tuo account</p>
+
+                <div class="row">
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                        <mat-label>Password attuale</mat-label>
+                        <input matInput type="password" name="passwordAttuale" [(ngModel)]="password.passwordAttuale" #passwordAttuale="ngModel" placeholder="Password Attuale">
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                    <mat-label>Nuova password</mat-label>
+                    <input matInput type="password" name="nuovaPassword" [(ngModel)]="password.nuovaPassword" minlength="6" #passwordNuova="ngModel" placeholder="Nuova Password">
+                    <mat-error *ngIf="passwordNuova.invalid && (passwordNuova.dirty || passwordNuova.touched)">
+                        Password troppo corta (min 6 caratteri)
+                    </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="half-width" class="half-width campoStondato">
+                    <mat-label>Conferma password</mat-label>
+                    <input matInput type="password" name="confermaPassword" [(ngModel)]="password.confermaPassword" minlength="6" #confermaPassword="ngModel" placeholder="Conferma password">
+                    <mat-error *ngIf="confermaPassword.invalid && (confermaPassword.dirty || confermaPassword.touched)">
+                        Password troppo corta (min 6 caratteri)
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </section>
+            <button mat-flat-button class="button" color="primary">Salva</button>
+        </form>
+    </div>
+    <div class="errore">
+        <p *ngIf="erroreCredenziali">{{ erroreCredenziali }}</p>
+        <p *ngIf="erroreGenerico">{{ erroreGenerico }}</p>
+    </div>
+
+  </div>
+</section>
+

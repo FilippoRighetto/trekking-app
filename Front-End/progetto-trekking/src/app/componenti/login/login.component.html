@@ -1,40 +1,49 @@
-        <section class="contenitoreRegistrazione">
-            <div class="credenzialiRegistrazione">
-            <p class="formTitle">Login</p>
-            <div class="contenitoreForm">
-                <form class="formRegistrazione" (ngSubmit)="onSubmit()" #form="ngForm">
-                    <mat-form-field>
-                        <mat-label>
-                            <i class="bi bi-envelope"></i>
-                            Email
-                        </mat-label>
-                        <input matInput type="email" name="email" [(ngModel)]="utente.email" required email #email="ngModel" placeholder="Email">   <!-- email serve ad attivare la validazione email -->
-                        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                            Inserisci una email valida
-                        </mat-error>
-                    </mat-form-field>
+<section class="contenitoreLogin"> 
+  <div class="overlay"></div> <!-- Layer semitrasparente sopra lo sfondo -->
+    <div class="credenzialiLogin">
+      <p class="formTitle"><strong>Login</strong></p>
 
-                    <mat-form-field>
-                        <mat-label>
-                            <i class="bi bi-lock-fill"></i>
-                            Password
-                        </mat-label>
-                        <input matInput type="password" name="password" [(ngModel)]="utente.password" required minlength="6" #password="ngModel" placeholder="Password">
-                        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-                            Password troppo corta (min 6 caratteri)
-                        </mat-error>
-                    </mat-form-field>
-                    <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Accedi</button>
-                </form>
-            </div>
-                <div class="errore">
-                <p *ngIf="erroreEmailPass">{{ erroreEmailPass }}</p>
-                <p *ngIf="erroreGenerico">{{ erroreGenerico }}</p>
-            </div>
-            <div class="successo">
-                <p *ngIf="loginEffettuato" class="successo">{{ loginEffettuato }}</p>
-            </div>
-            <p>Se non hai ancora un account <button mat-button color="accent" routerLink="/registrazione">REGISTRATI</button></p>
-            </div>
-        </section>
+      <div *ngIf="messaggioRegistrazione" class="messaggio-successo">
+        {{ messaggioRegistrazione }}
+      </div>
+      
+      <div class="contenitoreForm">
+        <form class="formLogin" (ngSubmit)="onSubmit()" #form="ngForm">
+          <mat-form-field class="campoStondato" >
+            <mat-label>
+              <i class="bi bi-envelope"></i>
+              Email
+            </mat-label>
+            <input matInput type="email" name="email" [(ngModel)]="utente.email" required email #email="ngModel" placeholder="Email">
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+              Inserisci una email valida
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="campoStondato">
+            <mat-label>
+              <i class="bi bi-lock-fill"></i>
+              Password
+            </mat-label>
+            <input matInput type="password" name="password" [(ngModel)]="utente.password" required #password="ngModel" placeholder="Password">
+            <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+              Inserisci la password
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Accedi</button>
+        </form>
+      </div>
+
+      <div class="errore">
+        <p *ngIf="erroreEmailPass">{{ erroreEmailPass }}</p>
+        <p *ngIf="erroreGenerico">{{ erroreGenerico }}</p>
+      </div>
+
+      <p class="scrittaRegistrati">
+        Non hai ancora un account?<a mat-button class="linkRegistrati" routerLink="/registrazione"><strong>REGISTRATI</strong></a>
+      </p>
+    </div>
+</section>
+
         

@@ -1,57 +1,89 @@
-/*************************
-
-**************************/
-.contenitoreRegistrazione{
-  height: 33em;
+.contenitoreLogin {
+  position: relative;
+  height: auto;
   width: 32em;
   display: flex;
-  margin-top: 3em;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 3em auto;
+  background-image: url('../../../assets/Immagini/sfondoMontagne.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 45px;
+  overflow: hidden;
+  padding-bottom: 2em;
 }
 
-.credenzialiRegistrazione{
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  z-index: 0;
+}
+
+.credenzialiLogin {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: 4em; 
+  padding-top: 3em;
   align-items: center;
-  background-color: lightgrey;
   width: 100%;
-  border-radius: 20px;
+  z-index: 1;
 }
 
-
-.formTitle{
-  font-size: 2em;
+.formTitle {
+  font-size: 3.3em;
   padding-bottom: 1em;
+  color: white;
 }
 
-.contenitoreForm{
-  display: flex; 
+.messaggio-successo {
+  background-color: #e0ffe0;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 13px;
+  margin-bottom: 30px;
+}
+
+.contenitoreForm {
+  display: flex;
   flex-direction: row;
   gap: 1em;
 }
 
-.formRegistrazione {
+.formLogin{
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 20em;
+  min-width: 24em;
   width: 100%;
 }
 
 .button {
   align-self: center;
+  min-width: 9em;
+  border-radius: 1em;
+  padding: 1.5em;
 }
 
-.errore{
-    font-size: large;
-    color: red;
-    margin-top: 1em;
+.errore {
+  font-size: large;
+  color: red;
+  margin-top: 1em;
 }
 
-.successo{
-    font-size: large;
-    color: green;
-    margin-top: 1em;
+.scrittaRegistrati{
+  margin-top: 2em;
+  color: white;
 }
+
+.linkRegistrati{
+  color: white;
+  text-decoration: underline;
+}
+
+
+
+

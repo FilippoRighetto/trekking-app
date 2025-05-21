@@ -1,13 +1,23 @@
-body {
-  background-color: lightgrey;
+.contenitoreRegistrazione{
+  height: 33em;
+  width: 32em;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3em; 
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.contenitoreRegistrazione{
+.credenzialiRegistrazione{
   display: flex;
   flex-direction: column;
   padding-top: 4em; 
   align-items: center;
-  height: 100%;
+  background-color: lightgrey;
+  width: 100%;
+  border-radius: 45px;
 }
 
 .formTitle{
@@ -31,6 +41,9 @@ body {
 
 .button {
   align-self: center;
+  min-width: 9em;
+  border-radius: 1em;
+  padding: 1.5em;
 }
 
 .errore{
@@ -39,8 +52,13 @@ body {
     margin-top: 1em;
 }
 
-.successo{
-    font-size: large;
-    color: green;
-    margin-top: 1em;
+.scrittaAccedi{
+  margin-top: 2em;
+  /*color: white;*/
 }
+
+.linkAccedi{
+  /*color: white;*/
+  text-decoration: underline;
+}
+

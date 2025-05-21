@@ -27,11 +27,17 @@ export class UtenteService {
   const headers = { 'Authorization': token };  // Passa il token nell'header Authorization
   return this.http.delete<string>(`${this.apiUrl}/logout`, { headers, responseType: 'text' as 'json' });
 
-}
+  }
 
   getProfile(token: string): Observable<any>{
     const headers = {'Authorization': token};
     return this.http.get(`${this.apiUrl}/profile`, { headers, responseType: 'json' });
+  }
+
+  updateProfile(updatedUser: any, token: string, passwordAttuale: string): Observable<any> {
+    const headers = { 'Authorization': token };
+    const params = {passwordAttuale};
+    return this.http.put<any>(`${this.apiUrl}/profile`, updatedUser, { headers, params, responseType: 'json' });
   }
 
   setUtente(utente: any){

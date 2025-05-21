@@ -1,4 +1,5 @@
 
+
 /****************************
           TOOLBAR
 ****************************/
@@ -12,8 +13,8 @@
 .toolbar::before {
   content: "";
   position: absolute;
-  left: 400px; 
-  right: 125px; 
+  left: 350px; 
+  right: 160px; 
 
   background-image: url('/assets/Immagini/Montagnestilizzate.png');
   height: 3.5em;
@@ -53,10 +54,80 @@
   background-color: #ECEFF1;
 }
 
+.bottoneMenu {
+  background: none !important;    /* nessuno sfondo */
+  border: none;
+  border-radius: 5em;
+  cursor: pointer;
+  color: white;
+}
+
+.iconaUtente{
+  font-size: 3.2em;
+}
+
+.bi-box-arrow-right{
+  color: red;
+}
+
+.bi-pencil-fill{
+  color: grey;
+}
+
+
+
 
 /****************************
           CONTENUTO
 ****************************/
-.contenuto{
+.sfondo {
+  position: relative;
+  height: 100vh;
+  /*background-image: url('../assets/Immagini/sfondoMontagne.jpg');*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contenuto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* Bianco con trasparenza */
+  z-index: 1;
+}
+
+/* Gli altri contenuti devono stare sopra l'overlay */
+router-outlet, .contenuto {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+/****************************
+      LOGOUT POPUP
+****************************/
+
+.logout-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.logout-popup {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 250px;
+  text-align: center;
 }

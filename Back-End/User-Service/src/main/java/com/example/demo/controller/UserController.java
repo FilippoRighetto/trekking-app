@@ -48,8 +48,8 @@ public class UserController {
 	}
 	
 	@PutMapping("/profile")
-	public Utente updateProfile(HttpServletRequest request, @RequestBody Utente updatedUser) {
+	public Utente updateProfile(HttpServletRequest request, @RequestBody Utente updatedUser, @RequestParam String passwordAttuale) {
 	    Utente utente = (Utente) request.getAttribute("utenteAutenticato");
-		return userService.updateProfile(utente, updatedUser);
+		return userService.updateProfile(utente, updatedUser, passwordAttuale);
 	}
 }

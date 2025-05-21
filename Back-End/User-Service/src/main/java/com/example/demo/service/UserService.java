@@ -44,11 +44,8 @@ public class UserService {
 	    if (usernameEsiste) {
 	        throw new RuntimeException("USERNAME_ESISTE");
 	    }
-
-	    //user.setPassword(passwordEncoder.encode(user.getPassword()));
 	    user.setDataDiRegistrazione(LocalDate.now());
 	    userRepository.save(user);
-	    
 	    return true;
 	}
 	
@@ -57,19 +54,15 @@ public class UserService {
 	public String loginUser(String email, String password) {
 		
 		Utente user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("EMAIL_NON_TROVATA"));
-		
-		
 		if(!password.equals(user.getPassword())) {
 			throw new RuntimeException("PASSWORD_SBAGLIATA");
 		}
-		
 		/*
 		if(!password.equals(user.getPassword())) {								//da togliere e abilitare il blocco sopra dopo i test
 			throw new RuntimeException("PASSWORD_SBAGLIATA");
 		}*/
-		
+
 		String token = UUID.randomUUID().toString();
-		
 		UtenteLoggato sessione = new UtenteLoggato();
 		sessione.setUtente(user);
 		sessione.setToken(token);
@@ -77,6 +70,7 @@ public class UserService {
 		utenteLoggatoRepository.save(sessione);
 		return token;
 	}
+	
 	
 	@Transactional
 	public void logOutUser(String token) {
@@ -90,29 +84,46 @@ public class UserService {
 	}*/
 	
 	
-	public Utente updateProfile(Utente currentUser, Utente updatedUser) {
-		if(!currentUser.getEmail().equals(updatedUser.getEmail())) {
-			if(userRepository.findByEmail(updatedUser.getEmail()).isPresent()) {					
-				throw new RuntimeException("Email già in uso");
-			}
-		}
+	public Utente updateProfile(Utente currentUser, Utente updatedUser, String passwordAttuale) {
+	    boolean emailEsiste = false;
+	    boolean usernameEsiste = false;
+
+	    if (!currentUser.getEmail().equals(updatedUser.getEmail())) {
+	        if (userRepository.findByEmail(updatedUser.getEmail()).isPresent()) {
+	            emailEsiste = true;
+	        }
+	    }
+	    if (!currentUser.getUsername().equals(updatedUser.getUsername())) {
+	        if (userRepository.findByUsername(updatedUser.getUsername()).isPresent()) {
+	            usernameEsiste = true;
+	        }
+	    }
+
+	    if (emailEsiste && usernameEsiste) {
+	        throw new RuntimeException("EMAIL_E_USERNAME_ESISTONO");
+	    } else if (emailEsiste) {
+	        throw new RuntimeException("EMAIL_ESISTE");
+	    } else if (usernameEsiste) {
+	        throw new RuntimeException("USERNAME_ESISTE");
+	    }
 		
-		if(!currentUser.getUsername().equals(updatedUser.getUsername())) {
-			if(userRepository.findByUsername(updatedUser.getUsername()).isPresent()) {				
-				throw new RuntimeException("Username già in uso");
-			}
-		}
+	    if (passwordAttuale != null && !passwordAttuale.isBlank() && updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
+	        if (!currentUser.getPassword().equals(passwordAttuale)) {
+	            throw new RuntimeException("PASSWORD_ATTUALE_ERRATA");
+	        }
+	        currentUser.setPassword(updatedUser.getPassword());
+	    }
+	    currentUser.setEmail(updatedUser.getEmail());
+	    currentUser.setUsername(updatedUser.getUsername());
+	    currentUser.setNome(updatedUser.getNome());
+	    currentUser.setCognome(updatedUser.getCognome());
 		
-		currentUser.setEmail(updatedUser.getEmail());
-		currentUser.setUsername(updatedUser.getUsername());
-		currentUser.setNome(updatedUser.getNome());
-		currentUser.setCognome(updatedUser.getCognome());
-		
-		if(updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
-			currentUser.setPassword(updatedUser.getPassword());
-		}
 		return userRepository.save(currentUser);
 	}
+	
+	
+	
+	
 	
 	public UtenteLoggato getSessione(String token) {
 	    return utenteLoggatoRepository.findByToken(token)

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { UtenteService } from 'src/app/servizi/utente.service';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
@@ -8,23 +8,28 @@ import * as bcrypt from 'bcryptjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  
 })
 export class LoginComponent implements OnInit{
 
   utente = {
     email: '',
     password: '',
+    passwordCripted: '',
   };
-  username: string = '';
-
   erroreGenerico: string = '';
   erroreEmailPass: string = '';
-  loginEffettuato: string = '';
+  messaggioRegistrazione: string = '';
 
   constructor(private utenteService: UtenteService, private router: Router){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const state = history.state;
+    if(state && state.messaggioRegistrazione){
+      this.messaggioRegistrazione = state.messaggioRegistrazione;
+    }
+  }
 
   controllaCampiForm(){
     if(this.utente.email && this.utente.password){
@@ -36,15 +41,13 @@ export class LoginComponent implements OnInit{
   onSubmit(){
     this.erroreGenerico = '';
     this.erroreEmailPass = '';
-    this.loginEffettuato = '';
 
     const salt = '$2b$10$1234567890123456789012';                           
     const hashedPassword = bcrypt.hashSync(this.utente.password, salt);   //creazione della pass criptata
-    this.utente.password = hashedPassword;
+    this.utente.passwordCripted = hashedPassword;
 
-    this.utenteService.login(this.utente.email, this.utente.password).subscribe({
+    this.utenteService.login(this.utente.email, this.utente.passwordCripted).subscribe({
       next: token => {
-        this.loginEffettuato = "Login effettuato correttamente!";
         sessionStorage.setItem('authToken', token);
         this.notificaAppComponentLogin();
 

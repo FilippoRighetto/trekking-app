@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     username: '',
     email: '',
   };
+  showLogoutConfirm: boolean = false;
 
   constructor(private utenteService: UtenteService, private router: Router) {}
 
@@ -49,6 +50,7 @@ export class AppComponent implements OnInit {
           this.utente.cognome = '';
           this.utente.username = '';
           this.utente.email = '';
+          this.showLogoutConfirm = false;
           sessionStorage.removeItem('authToken');
           this.router.navigate(['/']);
         },

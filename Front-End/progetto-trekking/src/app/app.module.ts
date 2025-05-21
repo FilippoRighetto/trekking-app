@@ -18,7 +18,9 @@ import { HomeComponent } from './componenti/home/home.component';
 import { PostTrekkingComponent } from './componenti/post-trekking/post-trekking.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { ModificaCredenzialiComponent } from './componenti/modifica-credenziali/modifica-credenziali.component';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     RegistrazioneComponent,
     LoginComponent,
     HomeComponent,
-    PostTrekkingComponent
+    PostTrekkingComponent,
+    ModificaCredenzialiComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     MatToolbarModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule, 
+    MatMenuModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,74 +18,65 @@ export class RegistrazioneComponent implements OnInit{
     email: '',
     password: '',
   };
-
-  confermaPassword: string = '';
-
-  erroreEmail: string = '';
-  erroreUsername: string = '';
-  erroreEmailUsername: string = '';
+  password = {
+    pass: '',
+    confPass: '',
+  }
+  erroreCredenziali: string = '';
   erroreGenerico: string = '';
-
-  successo: string = '';
 
 
   constructor(private utenteService: UtenteService, private router: Router){}
 
+
   ngOnInit(): void {}
 
+
   controllaCampiForm(){
-    if(this.utente.nome && this.utente.cognome && this.utente.username && this.utente.email && this.utente.password && this.confermaPassword){
+    if(this.utente.nome && this.utente.cognome && this.utente.username && this.utente.email && this.password.pass && this.password.confPass){
       return false;
     }
     return true;
   }
 
+
   onSubmit(form: NgForm){
-    this.erroreEmail = '';
-    this.erroreUsername = '';
-    this.erroreEmailUsername = '';
+    this.erroreCredenziali = '';
     this.erroreGenerico = '';
-    this.successo = '';
 
     if (form.invalid) {
       this.erroreGenerico = "Compila correttamente tutti i campi!";
       return;
     }
-
-    if (this.utente.password !== this.confermaPassword) {
+    if (this.password.pass !== this.password.confPass) {
       this.erroreGenerico = "Le password non coincidono!";
       return;
     }
 
     const salt = '$2b$10$1234567890123456789012';                           
-    const hashedPassword = bcrypt.hashSync(this.utente.password, salt);   //creazione della pass criptata
+    const hashedPassword = bcrypt.hashSync(this.password.pass, salt);   //creazione della pass criptata
     this.utente.password = hashedPassword;
 
     this.utenteService.registrazione(this.utente).subscribe({
       next: (result: boolean) => {
-        if(result){
-
-        }
-        /*
-        this.successo = "Grazie per esserti registrato "  + this.utente.nome + " !";
-        sessionStorage.setItem('authToken', token);
-        */
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], { 
+          state: {messaggioRegistrazione: 'Registrazione completata! Effettua il login.'}
+        });
         form.resetForm();
       },
       error: (err) => {
         console.error("Errore nella registrazione:", err);
 
-        const backendMsg = err.error;
+        const backendMsg = err.error?.message;
 
         if (backendMsg) {
           if (backendMsg.includes("EMAIL_ESISTE")) {
-            this.erroreEmail = "Email già in uso!";
+            this.erroreCredenziali = "Email già in uso!";
           } else if (backendMsg.includes("USERNAME_ESISTE")) {
-            this.erroreUsername = "Username già in uso!";
-          } else if(backendMsg.includes("EMAIL_E_USERNAME_ESISTONO"))
-            this.erroreEmailUsername = "Email e Username già in uso!";
-          else {
+            this.erroreCredenziali = "Username già in uso!";
+          } else if (backendMsg.includes("EMAIL_E_USERNAME_ESISTONO")) {
+            this.erroreCredenziali = "Email e Username già in uso!";
+          } else {
             this.erroreGenerico = "Errore generico nella registrazione.";
           }
         } else {

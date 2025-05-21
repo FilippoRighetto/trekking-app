@@ -4,11 +4,42 @@
   <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Home</a>
   <a mat-button routerLink="/trekking" routerLinkActive="active-link">Trekking</a>
   <span class="spacer"></span>
-  <span *ngIf="utente.username">{{ utente.username }}</span>
+
+  <span *ngIf="utente.username">
+      <button class="bottoneMenu" [matMenuTriggerFor]="menu">
+        <span class="iconaUtente"><i class="bi bi-person"></i></span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/info-account">
+          <mat-icon></mat-icon>
+          Visualizza info account
+        </button>
+        <button mat-menu-item routerLink="/modificaCredenziali">
+          <mat-icon><i class="bi bi-pencil-fill"></i></mat-icon>
+          Modifica account
+        </button>
+        <button mat-menu-item (click)="showLogoutConfirm = true">
+            <mat-icon><i class="bi bi-box-arrow-right"></i></mat-icon>         
+            Esci
+        </button>
+      </mat-menu>
+    </span>
+
   <button *ngIf="!utente.username" mat-raised-button  routerLink="/login">Accedi</button>
-  <button *ngIf="utente.username" mat-raised-button  (click)="logout()">Esci</button>
+  <button *ngIf="utente.username" mat-raised-button  (click)="showLogoutConfirm = true">Esci</button>
 </mat-toolbar>
 
- <div class="contenuto" style="padding: 16px;">
-  <router-outlet></router-outlet>
+<div *ngIf="showLogoutConfirm" class="logout-popup-overlay">
+  <div class="logout-popup">
+    <p>Sei sicuro di voler uscire?</p>
+    <button mat-button color="warn" (click)="logout()">Sì</button>
+    <button mat-button (click)="showLogoutConfirm = false">No</button>
+  </div>
 </div>
+
+<div class="sfondo  ">
+  <div class="contenuto" style="padding: 16px;">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
