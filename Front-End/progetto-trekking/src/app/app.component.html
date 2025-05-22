@@ -1,8 +1,8 @@
 
 <mat-toolbar class="toolbar">
   <img src="assets/Immagini/trekking-montagne-pini-adesivo-prespaziato.jpg" class="immagineToolbar" alt="Logo">
-  <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Home</a>
-  <a mat-button routerLink="/trekking" routerLinkActive="active-link">Trekking</a>
+  <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Home</a>
+  <a routerLink="/trekking" routerLinkActive="active-link">Trekking</a>
   <span class="spacer"></span>
 
   <span *ngIf="utente.username">
@@ -21,8 +21,8 @@
       </mat-menu>
     </span>
 
-  <button *ngIf="!utente.username" mat-raised-button  routerLink="/login">Accedi</button>
-  <button *ngIf="utente.username" mat-raised-button  (click)="showLogoutConfirm = true">Esci</button>
+  <button *ngIf="!utente.username" mat-raised-button  routerLink="/login" class="btn-trasparente">Accedi</button>
+  <button *ngIf="utente.username" mat-raised-button  (click)="showLogoutConfirm = true" class="btn-trasparente">Esci</button>
 </mat-toolbar>
 
 <div *ngIf="showLogoutConfirm" class="logout-popup-overlay">
@@ -34,8 +34,12 @@
 </div>
 
 <div class="sfondo  ">
-  <div class="contenuto" style="padding: 16px;">
-    <router-outlet></router-outlet>
-  </div>
+    <div class="overlay">
+      <p class="coordinateN">46°17′52.9″ N</p>
+      <p class="coordinateE">11°47′19.2″ E</p>
+      <div class="contenuto" style="padding: 16px;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
 </div>
 

@@ -4,58 +4,58 @@
           TOOLBAR
 ****************************/
 .toolbar {
-  background-color: #607D8B;
+  background-color: rgba(0, 0, 0, 0); 
   color: white;
-  padding: 0 16px;
-  position: relative; 
+  position: fixed; 
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
 }
 
-.toolbar::before {
-  content: "";
-  position: absolute;
-  left: 350px; 
-  right: 160px; 
-
-  background-image: url('/assets/Immagini/Montagnestilizzate.png');
-  height: 3.5em;
-  background-size: contain;
-  background-repeat: repeat-x;
-  background-position: left;
-
-  opacity: 0.08;
-  z-index: 0; /* Sfondo, dietro al contenuto */
-  pointer-events: none; /* Non cliccabile */
-}
 
 .immagineToolbar{
   height: 7.5em;  
 }
 
 .toolbar a{
-  font-size: 0.9em;
-  margin-right: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: 300;
+  margin-left: 25px;
 }
 
 .toolbar a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
   border-bottom: 2px solid white;
 }
 
 .active-link {
-  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid white;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-.toolbar button[mat-raised-button] {
+.btn-trasparente{
+  background-color: transparent !important;
+  border: 2px solid white;
+  color: white !important;
   border-radius: 20px;
-  background-color: #ECEFF1;
+  padding: 6px 16px;
+  font-size: 0.9em;
+  font-weight: 300;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-trasparente:hover {
+  border: 2px solid white;
+  color: black !important;
+  background-color: white !important;
 }
 
 .bottoneMenu {
-  background: none !important;    /* nessuno sfondo */
+  background: none !important;    
   border: none;
   border-radius: 5em;
   cursor: pointer;
@@ -83,24 +83,42 @@
 .sfondo {
   position: relative;
   height: 100vh;
-  /*background-image: url('../assets/Immagini/sfondoMontagne.jpg');*/
+  background-image: url('../assets/Immagini/pexels-eberhardgross-3389531.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.contenuto {
+.overlay{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.6); /* Bianco con trasparenza */
+  background-color: rgba(0, 0, 0, 0.6); 
   z-index: 1;
 }
 
-/* Gli altri contenuti devono stare sopra l'overlay */
-router-outlet, .contenuto {
+.coordinateN{
+  font-family: 'Share Tech Mono', monospace !important;
+  position: absolute;
+  color: gray;
+  top: 43vw;
+  left: 92vw;
+}
+.coordinateE{
+  font-family: 'Share Tech Mono', monospace !important;
+  position: absolute;
+  color: gray;
+  top: 44vw;
+  left: 92vw;
+}
+
+.contenuto {
+  margin-top: 4em;
+}
+
+router-outlet{
   position: relative;
   z-index: 2;
 }
