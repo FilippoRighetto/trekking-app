@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UtenteService {
 
-  private apiUrl = 'http://localhost:8080/api/user'
+  private apiUrl = 'http://localhost:8081/api/user'
 
   private utenteSubject = new BehaviorSubject<any>(null); // è un tipo speciale di subject  che mantiene sempre l'ultimo valore emesso. Quando un nuovo subscriber si iscrive, riceve subito l’ultimo valore. Serve a tenere in memoria uno stato dove altri componenti si possono iscrivere e ricevere in tempo reale gli aggiornamenti quando lo stato cambia.
   utente$: Observable<any> = this.utenteSubject.asObservable(); // observable per ascoltare i cambiamenti
@@ -15,7 +15,7 @@ export class UtenteService {
   constructor(private http:HttpClient){}
 
   registrazione(utente: any): Observable<boolean>{
-    return this.http.post<boolean>('http://localhost:8080/api/user/register', utente);
+    return this.http.post<boolean>('http://localhost:8081/api/user/register', utente);
   }
 
   login(email: string, password: string): Observable<any> {

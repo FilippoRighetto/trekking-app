@@ -28,7 +28,7 @@ export class ModificaCredenzialiComponent implements OnInit{
   userError: string = '';
   emailError: string = '';
 
-  modificaForm: boolean = true;
+  modificaForm: boolean = false;
   erroreCredenziali: string = '';
   erroreGenerico: string = '';
 

@@ -1,8 +1,8 @@
 .contenitoreRegistrazione {
   position: relative;
   height: auto;
-  width: 60em;
-  padding-bottom: 3em;
+  width: 55em;
+  padding-bottom: 2em;
   display: flex;
   margin: 3em auto;
   background-color: lightgray;
@@ -23,7 +23,20 @@
 }
 
 .contenitoreCredenziali {
-  align-self: flex-start;
+  margin: 0 auto;
+  border: 1px solid gray;
+  border-radius: 30px;
+  width: 35em;
+  padding: 2.5em;
+}
+
+.fraseModificaDati{
+  margin-top: 3em;
+  margin-left: 11em;
+}
+
+.modificaDati{
+  text-decoration: underline;
 }
 
 .button {
@@ -71,7 +84,6 @@
 .tornaVisDettagli {
   position: absolute;
   margin-left: 1.7em;
-
   text-decoration: underline;
   font-size: 1.7em;
   border-radius: 1em;

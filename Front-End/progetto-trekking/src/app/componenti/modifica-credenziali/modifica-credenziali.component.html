@@ -2,22 +2,23 @@
   <div class="overlay"></div> <!-- Layer semitrasparente sopra lo sfondo -->
 
   <div class="credenzialiRegistrazione">
-    <div class="visualDati">
+    <div *ngIf="modificaForm" class="visualDati">
         <a mat-flat-button class="tornaVisDettagli" color="primary" (click)="apriChiudiModificaForm()"><strong><i class="bi bi-arrow-left"></i></strong></a>
     </div>
     <p class="formTitle">Credenziali account</p>
     
-    <div *ngIf="!modificaForm" class="contenitoreCredenziali">
-        <mat-list role="list">
-            <mat-list-item role="listitem"><strong>Nome: </strong>{{utente.nome}}</mat-list-item>
-            <mat-list-item role="listitem"><strong>Cognome: </strong>{{utente.cognome}}</mat-list-item>
-            <mat-list-item role="listitem"><strong>Email: </strong>{{utente.email}}</mat-list-item>
-            <mat-list-item role="listitem"><strong>Username: </strong>{{utente.username}}</mat-list-item>
-        </mat-list>
-        <p>
-            Se desideri modificare i tuoi dati
-            <button mat-button color="accent" (click)="apriChiudiModificaForm()">Modifica</button>
-        </p>
+    <div *ngIf="!modificaForm">
+        <div class="contenitoreCredenziali">
+            <mat-list role="list">
+                <mat-list-item role="listitem"><strong>Nome: </strong>{{utente.nome}}</mat-list-item>
+                <mat-list-item role="listitem"><strong>Cognome: </strong>{{utente.cognome}}</mat-list-item>
+                <mat-list-item role="listitem"><strong>Email: </strong>{{utente.email}}</mat-list-item>
+                <mat-list-item role="listitem"><strong>Username: </strong>{{utente.username}}</mat-list-item>
+            </mat-list>
+        </div>
+            <p class="fraseModificaDati">
+                Se desideri modificare i tuoi dati<a mat-button class="modificaDati" (click)="apriChiudiModificaForm()"><strong>Modifica</strong></a>
+            </p>
     </div>
     <div class="contenitoreForm"  *ngIf="modificaForm">
         <form class="formRegistrazione" (ngSubmit)="onSubmit(form)" #form="ngForm">
