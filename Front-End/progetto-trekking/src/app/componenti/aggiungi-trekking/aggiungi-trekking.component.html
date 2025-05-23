@@ -1,0 +1,60 @@
+
+    <section class="aggiungiTrekking">
+        <p class="formTitle">Inserisci il trekking</p>
+        <form class="formAggTrekk" (ngSubmit)="onSubmit(form)" #form="ngForm">
+
+            <mat-form-field class="campoStondato fullWidth">
+                <mat-label>Titolo</mat-label>
+                <input matInput type="text" name="titolo" [(ngModel)]="trekking.titolo" required #titolo="ngModel" placeholder="Titolo">
+            </mat-form-field>
+        
+            <mat-form-field class="campoStondato fullWidth">
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput name="descrizione" [(ngModel)]="trekking.descrizione" required #descrizione="ngModel" placeholder="Descrizione" rows="4"></textarea>
+            </mat-form-field>
+
+            <div class="row">
+                <mat-form-field class="campoStondato halfWidth">
+                    <mat-label>Seleziona la data</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="trekking.data" name="data" placeholder="DD/MM/YYYY">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="campoStondato halfWidth" appearance="fill">
+                <mat-label>Seleziona l'ora</mat-label>
+                <mat-select [(ngModel)]="trekking.orario" name="orario">
+                    <mat-option *ngFor="let ora of ore" [value]="ora">{{ ora }}</mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field class="campoStondato fullWidth">
+                <mat-label>Luogo</mat-label>
+                <input matInput type="text" name="luogo" [(ngModel)]="trekking.luogo" required #luogo="ngModel" placeholder="Luogo">
+            </mat-form-field>
+
+            <mat-form-field class="campoStondato fullWidth">
+                <mat-label>Punto di partenza</mat-label>
+                <input matInput type="text" name="partenza" [(ngModel)]="trekking.puntoPartenza" required #partenza="ngModel" placeholder="Partenza">
+            </mat-form-field>
+
+            <div class="row">
+                <mat-form-field class="campoStondato halfWidth" appearance="fill">
+                    <mat-label>Difficoltà</mat-label>
+                    <mat-select [(ngModel)]="trekking.difficolta" name="difficolta" required>
+                        <mat-option *ngFor="let opzione of difficoltaOpzioni" [value]="opzione.valore">
+                        {{ opzione.descrizione }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="campoStondato halfWidth">
+                    <mat-label>Durata (ore)</mat-label>
+                    <input matInput type="number" min="0" step="0.5" name="durataOre" [(ngModel)]="trekking.durataOre" placeholder="Durata in ore" required>
+                </mat-form-field>
+            </div>
+
+            <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Salva</button>
+        </form>
+    </section>

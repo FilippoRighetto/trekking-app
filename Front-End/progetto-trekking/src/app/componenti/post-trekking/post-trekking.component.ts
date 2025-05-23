@@ -20,6 +20,8 @@ export class PostTrekkingComponent implements OnInit {
     email: '',
   };
 
+  visualizzaBottNav = false;
+
   ngOnInit(): void {
     this.utenteService.utente$.subscribe((utente) => {
       if (utente) {
@@ -30,6 +32,10 @@ export class PostTrekkingComponent implements OnInit {
       }
 
     });
+      const currentUrl = this.router.url;
+      if (currentUrl.includes('/trekking/visualizzaPostPubblicati') || currentUrl.includes('/trekking/aggiungi')) {
+        this.visualizzaBottNav = true;
+      }
   }
 
     vaiALogin() {

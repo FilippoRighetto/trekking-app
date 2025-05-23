@@ -7,8 +7,34 @@
   </mat-card>
 </section>
 
-<section *ngIf="utenteLoggato">
-  <!-- Qui va il vero contenuto della pagina -->
-  <h2>Benvenuto nella pagina Trekking!</h2>
-  <!-- il resto della pagina -->
+<section *ngIf="utenteLoggato" class="sezioneTreking">
+  <div class="contenitoreTreking">
+
+    <!-- Colonna sinistra -->
+    <div class="colonnaLaterale sinistra">
+      <ul>
+        <li><a routerLink="/trekking/visualizzaPostPubblicati" (click)="visualizzaBottNav=true">I tuoi treking</a></li>
+        <li><a>aaaaaa</a></li>
+        <li><a>bbbbbb</a></li>
+        <li><a>cccccc</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="colonnaCentrale">
+      <div class="navigazionePost" *ngIf="visualizzaBottNav">
+          <button mat-flat-button class="buttonCambia" routerLink="/trekking/visualizzaPostPubblicati" color="primary">Visualizza</button>
+          <button mat-flat-button class="buttonCambia" routerLink="/trekking/aggiungi" color="primary">Aggiungi</button>
+      </div>
+      <div class="contenutoTrekking">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="colonnaLaterale destra">
+      <!-- eventualmente metti altro qui -->
+    </div>
+
+  </div>
 </section>

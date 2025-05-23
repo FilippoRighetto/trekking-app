@@ -1,0 +1,47 @@
+.sezioneTreking {
+  width: 97vw;
+  height: 100vh;
+}
+
+.contenitoreTreking {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.colonnaLaterale {
+  width: 15em;
+  background-color: lightgray;
+  padding: 1em;
+}
+
+.colonnaCentrale {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; 
+}
+
+.navigazionePost {
+  background-color: white;
+  padding: 1em;
+  flex: 0 0 auto; 
+}
+
+.contenutoTrekking {
+  background-color: aquamarine;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.buttonCambia {
+  min-width: 13em;
+  border-radius: 1em;
+  padding: 1.5em;
+}
+
+.navigazionePost{
+  display: flex;
+  justify-content: center; /* centra i bottoni orizzontalmente */
+  gap: 2em; /* spazio tra i bottoni */
+}

@@ -1,0 +1,19 @@
+    <section  class="visualizzaTrekingAggiunti">
+        <div class="contenitore-messaggio">
+        <div *ngIf="messaggioRegistrazioneTrekking" class="messaggio-successo">
+            {{ messaggioRegistrazioneTrekking }}
+        </div>
+        </div>
+        <div class="container-trekking">
+            <div *ngFor="let trekking of mieiTrekking" class="singolo-trekking">
+            <h3>{{ trekking.titolo }}</h3>
+            <p><strong>Descrizione:</strong> {{ trekking.descrizione }}</p>
+            <p><strong>Data:</strong> {{ trekking.data | date:'dd/MM/yyyy' }}</p>
+            <p><strong>Orario:</strong> {{ trekking.orario }}</p>
+            <p><strong>Luogo:</strong> {{ trekking.luogo }}</p>
+            <p><strong>Punto Partenza:</strong> {{ trekking.puntoPartenza }}</p>
+            <p><strong>Difficoltà:</strong> {{ trekking.difficolta }}</p>
+            <p><strong>Durata Ore:</strong> {{ trekking.durataOre }}</p>
+            </div>
+        </div>
+    </section>

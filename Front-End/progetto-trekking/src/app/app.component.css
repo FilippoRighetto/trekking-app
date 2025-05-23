@@ -103,15 +103,22 @@
   font-family: 'Share Tech Mono', monospace !important;
   position: absolute;
   color: gray;
-  top: 43vw;
-  left: 92vw;
+  bottom: 3.6em;
+  right: 2.7%;
+  /*top: 43vw;
+  left: 92vw;*/
 }
 .coordinateE{
   font-family: 'Share Tech Mono', monospace !important;
   position: absolute;
   color: gray;
+  padding-top: 2em;
+  bottom: 2.5em;
+  right: 2.7%;
+  /*
   top: 44vw;
   left: 92vw;
+  */
 }
 
 .contenuto {

@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UtenteService {
 
-  private apiUrl = 'http://localhost:8081/api/user'
+  private apiUrlUser = 'http://localhost:8081/api/user'
 
   private utenteSubject = new BehaviorSubject<any>(null); // è un tipo speciale di subject  che mantiene sempre l'ultimo valore emesso. Quando un nuovo subscriber si iscrive, riceve subito l’ultimo valore. Serve a tenere in memoria uno stato dove altri componenti si possono iscrivere e ricevere in tempo reale gli aggiornamenti quando lo stato cambia.
   utente$: Observable<any> = this.utenteSubject.asObservable(); // observable per ascoltare i cambiamenti
@@ -20,25 +20,26 @@ export class UtenteService {
 
   login(email: string, password: string): Observable<any> {
     const params = { email, password };
-    return this.http.get(`${this.apiUrl}/login`, { params, responseType: 'text'});
+    return this.http.get(`${this.apiUrlUser}/login`, { params, responseType: 'text'});
   }
 
   logout(token: string): Observable<string> {  
   const headers = { 'Authorization': token };  // Passa il token nell'header Authorization
-  return this.http.delete<string>(`${this.apiUrl}/logout`, { headers, responseType: 'text' as 'json' });
+  return this.http.delete<string>(`${this.apiUrlUser}/logout`, { headers, responseType: 'text' as 'json' });
 
   }
 
   getProfile(token: string): Observable<any>{
     const headers = {'Authorization': token};
-    return this.http.get(`${this.apiUrl}/profile`, { headers, responseType: 'json' });
+    return this.http.get(`${this.apiUrlUser}/profile`, { headers, responseType: 'json' });
   }
 
   updateProfile(updatedUser: any, token: string, passwordAttuale: string): Observable<any> {
     const headers = { 'Authorization': token };
     const params = {passwordAttuale};
-    return this.http.put<any>(`${this.apiUrl}/profile`, updatedUser, { headers, params, responseType: 'json' });
+    return this.http.put<any>(`${this.apiUrlUser}/profile`, updatedUser, { headers, params, responseType: 'json' });
   }
+
 
   setUtente(utente: any){
     this.utenteSubject.next(utente);

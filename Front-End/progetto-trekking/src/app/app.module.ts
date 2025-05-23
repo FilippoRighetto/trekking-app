@@ -21,6 +21,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ModificaCredenzialiComponent } from './componenti/modifica-credenziali/modifica-credenziali.component';
 import {MatListModule} from '@angular/material/list';
+import { AggiungiTrekkingComponent } from './componenti/aggiungi-trekking/aggiungi-trekking.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; 
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-treking-personali/visualizza-treking-personali.component';
+
 
 
 @NgModule({
@@ -30,7 +38,9 @@ import {MatListModule} from '@angular/material/list';
     LoginComponent,
     HomeComponent,
     PostTrekkingComponent,
-    ModificaCredenzialiComponent
+    ModificaCredenzialiComponent,
+    AggiungiTrekkingComponent,
+    VisualizzaTrekingPersonaliComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +56,14 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule, 
     MatMenuModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'it-IT' } 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,95 @@
+.aggiungiTrekking{
+    background-color: lightgray;
+    border-radius: 45px;
+    width: 40em;
+    padding: 1em;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formTitle{
+    padding-top: 1em;
+  font-size: 2em;
+  text-align: center;
+}
+
+.formAggTrekk{
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.halfWidth {
+  flex: 1;
+  min-width: 0; /* evita overflow */
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.button {
+  align-self: center;
+  min-width: 9em;
+  border-radius: 1em;
+  padding: 1.5em;
+}
+
+.container-trekking {
+  display: flex;
+  flex-wrap: wrap;  /* permette di andare a capo se non c'è spazio */
+  gap: 16px;        /* spazio tra i riquadri */
+  justify-content: center; /* centra i riquadri orizzontalmente */
+
+}
+
+.singolo-trekking {
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 8px;
+  width: 300px;     /* larghezza fissa per ogni riquadro */
+  background-color: lightgray;
+  z-index: 100;
+}
+
+.buttonCambia {
+  min-width: 13em;
+  border-radius: 1em;
+  padding: 1.5em;
+}
+
+.navigazione{
+  display: flex;
+  justify-content: center; /* centra i bottoni orizzontalmente */
+  gap: 2em; /* spazio tra i bottoni */
+  margin-bottom: 2em; /* spazio sotto la navigazione */
+}
+
+.messaggio-successo {
+  background-color: #e0ffe0;
+  color: #2e7d32;
+  padding: 10px 20px;
+  border-radius: 13px;
+  margin: 0 auto 30px auto;
+  display: inline-block;
+  text-align: center;
+}
+
+.contenitoreMessaggio{
+  text-align: center;
+}
