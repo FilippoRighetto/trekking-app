@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostTrekingServiceService } from 'src/app/servizi/post-treking-service.service';
 import { Router } from '@angular/router';
-import { transition } from '@angular/animations';
-
 
 
 
@@ -34,6 +32,7 @@ export class AggiungiTrekkingComponent implements OnInit{
   ];
 
   erroreGenerico: string = '';
+  dataMinima!: Date;
   ore: string[] = [];
 
 
@@ -41,6 +40,11 @@ export class AggiungiTrekkingComponent implements OnInit{
 
   ngOnInit(): void {
     this.generaOre();
+
+    //imposto la data minima a domani
+    this.dataMinima = new Date();
+    this.dataMinima.setDate(this.dataMinima.getDate() + 1);
+    this.dataMinima.setHours(0, 0, 0, 0);
   }
 
 

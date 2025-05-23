@@ -11,13 +11,12 @@
   <div class="contenitoreTreking">
 
     <!-- Colonna sinistra -->
-    <div class="colonnaLaterale sinistra">
-      <ul>
-        <li><a routerLink="/trekking/visualizzaPostPubblicati" (click)="visualizzaBottNav=true">I tuoi treking</a></li>
-        <li><a>aaaaaa</a></li>
-        <li><a>bbbbbb</a></li>
-        <li><a>cccccc</a></li>
-      </ul>
+    <div class="colonnaLateraleSx">
+      <nav class="menuLaterale">
+        <a class="listaPartecipa">🥾 Partecipa ad un trekking</a>
+        <a routerLink="/trekking/visualizzaPostPubblicati" routerLinkActive="attivo" (click)="visualizzaBottNav=true">📌 I tuoi trekking</a>
+        <a>🧭 Le tue penotazioni</a>
+      </nav>
     </div>
 
     <!-- Colonna centrale -->
@@ -32,7 +31,7 @@
     </div>
 
     <!-- Colonna destra -->
-    <div class="colonnaLaterale destra">
+    <div class="colonnaLateraleDx">
       <!-- eventualmente metti altro qui -->
     </div>
 

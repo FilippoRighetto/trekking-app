@@ -1,6 +1,6 @@
 .sezioneTreking {
   width: 97vw;
-  height: 100vh;
+  height: 85vh;
 }
 
 .contenitoreTreking {
@@ -9,9 +9,17 @@
   height: 100%;
 }
 
-.colonnaLaterale {
+.colonnaLateraleSx {
   width: 15em;
-  background-color: lightgray;
+  margin-top: 2em;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 1em;
+}
+
+.colonnaLateraleDx {
+  width: 15em;
   padding: 1em;
 }
 
@@ -23,16 +31,41 @@
 }
 
 .navigazionePost {
-  background-color: white;
+  /*background-color: white;*/
   padding: 1em;
   flex: 0 0 auto; 
 }
 
+
+/*barra laterale scroll*/
 .contenutoTrekking {
-  background-color: aquamarine;
   flex: 1;
   overflow-y: auto;
+  scrollbar-width: thin;              
+  scrollbar-color: #bbb transparent;  
 }
+
+.contenutoTrekking::-webkit-scrollbar {
+  width: 8px;
+}
+
+.contenutoTrekking::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contenutoTrekking::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.contenutoTrekking::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
 
 .buttonCambia {
   min-width: 13em;
@@ -45,3 +78,36 @@
   justify-content: center; /* centra i bottoni orizzontalmente */
   gap: 2em; /* spazio tra i bottoni */
 }
+
+.menuLaterale {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.menuLaterale a {
+  display: block;
+  padding: 0.75em 1em;
+  text-decoration: none;
+  background-color: #f0f0f0;
+  border-radius: 0.5em;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.menuLaterale a.listaPartecipa{
+  height: 6em;
+  text-align: center;
+}
+
+.menuLaterale a:hover {
+  background-color: #e0e0e0;
+  transform: translateX(5px);
+}
+
+.menuLaterale a.attivo {
+  background-color: #3f51b5;
+  color: white;
+}
+

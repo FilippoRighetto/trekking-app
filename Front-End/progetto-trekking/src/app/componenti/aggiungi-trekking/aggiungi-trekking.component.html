@@ -16,7 +16,7 @@
             <div class="row">
                 <mat-form-field class="campoStondato halfWidth">
                     <mat-label>Seleziona la data</mat-label>
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="trekking.data" name="data" placeholder="DD/MM/YYYY">
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="trekking.data" [min]="dataMinima" name="data" placeholder="DD/MM/YYYY">
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
