@@ -17,8 +17,30 @@ export class PostTrekingServiceService {
   }
 
   getTrekkingPersonali(token: string): Observable<any[]> {
-  const headers = { 'Authorization': token };
-  return this.http.get<any[]>(`${this.apiUrlPostTreking}/visualizzaMiei`, { headers });
-}
+    const headers = { 'Authorization': token };
+    return this.http.get<any[]>(`${this.apiUrlPostTreking}/visualizzaMiei`, { headers });
+  }
+
+  cancellaTrekkingPersonaliId(id: number, token: string): Observable<any>{
+    const headers = { 'Authorization': token };
+    return this.http.delete<any>(`${this.apiUrlPostTreking}/cancella/${id}`, { headers });
+  }
+
+  dammiTrekkingDaId(id: number, token: string): Observable<any> {
+    const headers = { 'Authorization': token };
+    return this.http.get<any>(`${this.apiUrlPostTreking}/visualizzaSingolo/${id}`, { headers });
+  }
+
+  modificaTrekking(id: number, trekking: any, token: string): Observable<boolean> {
+    const headers = { 'Authorization': token };
+    return this.http.put<boolean>(`${this.apiUrlPostTreking}/modifica/${id}`, trekking, { headers });
+  }
+
+  dammiTuttiTrekking(token: string): Observable<any[]> {
+    const headers = { 'Authorization': token };
+    return this.http.get<any[]>(`${this.apiUrlPostTreking}/visualizzaTutti`, { headers });
+  }
+
+
 
 }

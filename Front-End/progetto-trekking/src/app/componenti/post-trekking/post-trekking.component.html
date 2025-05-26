@@ -13,7 +13,7 @@
     <!-- Colonna sinistra -->
     <div class="colonnaLateraleSx">
       <nav class="menuLaterale">
-        <a class="listaPartecipa">🥾 Partecipa ad un trekking</a>
+        <a class="listaPartecipa" routerLink="/trekking/visualizzaTuttiTrekking" routerLinkActive="attivo" (click)="visualizzaBottNav=false">🥾 Partecipa ad un trekking</a>
         <a routerLink="/trekking/visualizzaPostPubblicati" routerLinkActive="attivo" (click)="visualizzaBottNav=true">📌 I tuoi trekking</a>
         <a>🧭 Le tue penotazioni</a>
       </nav>
@@ -32,7 +32,6 @@
 
     <!-- Colonna destra -->
     <div class="colonnaLateraleDx">
-      <!-- eventualmente metti altro qui -->
     </div>
 
   </div>

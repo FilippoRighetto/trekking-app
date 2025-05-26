@@ -60,7 +60,7 @@ public class AuthFilter implements Filter{
 	        UtenteLoggato sessione = userService.getSessione(token);
 	        
 	        if (sessione.getDataScadenza().isBefore(java.time.LocalDateTime.now())) {
-	            userService.invalidateSession(token); // o direttamente utenteLoggatoRepository.deleteByToken(token);
+	            userService.invalidateSession(token);
 	            httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token scaduto");
 	            return;
 	        }

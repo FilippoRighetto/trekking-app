@@ -1,19 +1,32 @@
     <section  class="visualizzaTrekingAggiunti">
         <div class="contenitore-messaggio">
-        <div *ngIf="messaggioRegistrazioneTrekking" class="messaggio-successo">
-            {{ messaggioRegistrazioneTrekking }}
-        </div>
+            <div *ngIf="messaggioRegistrazioneTrekking" class="messaggio-successo">
+                {{ messaggioRegistrazioneTrekking }}
+            </div>
         </div>
         <div class="container-trekking">
             <div *ngFor="let trekking of mieiTrekking" class="singolo-trekking">
-            <h3>{{ trekking.titolo }}</h3>
-            <p><strong>Descrizione:</strong> {{ trekking.descrizione }}</p>
-            <p><strong>Data:</strong> {{ trekking.data | date:'dd/MM/yyyy' }}</p>
-            <p><strong>Orario:</strong> {{ trekking.orario }}</p>
-            <p><strong>Luogo:</strong> {{ trekking.luogo }}</p>
-            <p><strong>Punto Partenza:</strong> {{ trekking.puntoPartenza }}</p>
-            <p><strong>Difficoltà:</strong> {{ trekking.difficolta }}</p>
-            <p><strong>Durata Ore:</strong> {{ trekking.durataOre }}</p>
+                <h3>{{ trekking.titolo }}</h3>
+                <p><strong>Descrizione:</strong> {{ trekking.descrizione }}</p>
+                <p><strong>Data:</strong> {{ trekking.data | date:'dd/MM/yyyy' }}</p>
+                <p><strong>Orario:</strong> {{ trekking.orario }}</p>
+                <p><strong>Luogo:</strong> {{ trekking.luogo }}</p>
+                <p><strong>Punto Partenza:</strong> {{ trekking.puntoPartenza }}</p>
+                <p><strong>Difficoltà:</strong> {{ trekking.difficolta }}</p>
+                <p><strong>Durata Ore:</strong> {{ trekking.durataOre }}</p>
+                <div class="ContenitoreBottoniPostSingolo" *ngIf="!isDataPassata(trekking.data)">
+                    <button mat-flat-button [routerLink]="['/trekking/modificaTrekPers', trekking.id]" class="bottoneModifica">Modifica</button>
+                    <button mat-flat-button  (click)="apriPopupConferma(trekking.id)" class="bottoneCancella">Cancella</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mostraAvvisoConferma" class="cancellaPopupOverlay">
+            <div class="cancellaPopup">
+                <p>Sei sicuro di voler cancellare il post?</p>
+                <button mat-button color="warn" (click)="cancellaPostTrekkingPersonale()">Sì</button>
+                <button mat-button (click)="mostraAvvisoConferma = false">No</button>
             </div>
         </div>
     </section>
+
+

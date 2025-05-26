@@ -7,14 +7,17 @@ import { PostTrekkingComponent } from './componenti/post-trekking/post-trekking.
 import { ModificaCredenzialiComponent } from './componenti/modifica-credenziali/modifica-credenziali.component';
 import { AggiungiTrekkingComponent } from './componenti/aggiungi-trekking/aggiungi-trekking.component';
 import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-treking-personali/visualizza-treking-personali.component';
+import { ModificaTrekkingPersonaliComponent } from './componenti/modifica-trekking-personali/modifica-trekking-personali.component';
+import { VisualizzaPrenotaTrekkingComponent } from './componenti/visualizza-prenota-trekking/visualizza-prenota-trekking.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  { path:'trekking', 
-    component: PostTrekkingComponent,
+  { path:'trekking', component: PostTrekkingComponent,
     children: [
       {path: 'aggiungi', component: AggiungiTrekkingComponent},
       {path: 'visualizzaPostPubblicati', component: VisualizzaTrekingPersonaliComponent},
+      {path: 'modificaTrekPers/:id', component: ModificaTrekkingPersonaliComponent},
+      {path: 'visualizzaTuttiTrekking', component: VisualizzaPrenotaTrekkingComponent},
     ]
   },
   {path:'registrazione', component: RegistrazioneComponent},

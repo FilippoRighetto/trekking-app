@@ -43,7 +43,7 @@ export class AggiungiTrekkingComponent implements OnInit{
 
     //imposto la data minima a domani
     this.dataMinima = new Date();
-    this.dataMinima.setDate(this.dataMinima.getDate() + 1);
+    this.dataMinima.setDate(this.dataMinima.getDate());
     this.dataMinima.setHours(0, 0, 0, 0);
   }
 

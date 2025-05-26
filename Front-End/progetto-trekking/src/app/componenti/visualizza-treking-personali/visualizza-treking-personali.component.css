@@ -7,15 +7,17 @@
 }
 
 .singolo-trekking {
-  border: 1px solid black;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto; 
   padding: 12px;
-  border-radius: 8px;
-  width: 300px;     
+  border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(15px);
-  border-radius: 15px;
-  z-index: 100;
+  border: 1px solid black;
+  color: white;
+  width: 300px;
 }
 
 .contenitore-messaggio {
@@ -32,4 +34,60 @@
   text-align: center;
   white-space: nowrap;       
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ContenitoreBottoniPostSingolo {
+  display: flex;
+  justify-content: center; 
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.bottoneModifica {
+  background-color: #e5f0ff;        /* Azzurro molto chiaro */
+  color: #0055cc;                   /* Blu intenso */
+  border: 1px solid #0055cc;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  border-radius: 1em;
+  padding: 1.5em;
+}
+
+.bottoneModifica:hover {
+  background-color: #cce0ff;        /* Azzurro un po’ più visibile al passaggio */
+}
+
+.bottoneCancella{
+  background-color: #ffe5e5;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  border-radius: 1em;
+  padding: 1.5em;
+}
+
+.bottoneCancella:hover {
+  background-color: #ffcccc; 
+}
+
+.cancellaPopupOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.cancellaPopup{
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 250px;
+  text-align: center;
 }

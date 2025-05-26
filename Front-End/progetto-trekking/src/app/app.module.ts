@@ -28,6 +28,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-treking-personali/visualizza-treking-personali.component';
+import { ModificaTrekkingPersonaliComponent } from './componenti/modifica-trekking-personali/modifica-trekking-personali.component';
+import { VisualizzaPrenotaTrekkingComponent } from './componenti/visualizza-prenota-trekking/visualizza-prenota-trekking.component';
 
 
 
@@ -40,7 +42,9 @@ import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-tre
     PostTrekkingComponent,
     ModificaCredenzialiComponent,
     AggiungiTrekkingComponent,
-    VisualizzaTrekingPersonaliComponent
+    VisualizzaTrekingPersonaliComponent,
+    ModificaTrekkingPersonaliComponent,
+    VisualizzaPrenotaTrekkingComponent
   ],
   imports: [
     BrowserModule,
