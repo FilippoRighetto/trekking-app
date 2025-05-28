@@ -41,8 +41,8 @@ public class TrekkingService {
 	
 	
 	public List<Trekking> getTrekkingPubblici(String token) {
-	    Utente utente = getUtenteLoggato(token);
-	    if (utente == null) return List.of(); // oppure solleva eccezione
+			Utente utente = getUtenteLoggato(token);
+			if (utente == null) return List.of(); // oppure solleva eccezione
 
 	    LocalDate oggi = LocalDate.now();
 	    return trekkingRepository.findByOrganizzatoreIdNotAndDataAfter(utente.getId(), oggi);

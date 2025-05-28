@@ -1,10 +1,5 @@
-.filtri-trekking{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 2em;
+.visualizzaTrekingAggiunti{
+  margin-top: 2em;
 }
 
 .contenitore-messaggio {
@@ -45,29 +40,28 @@
   width: 300px;
 }
 
-
-.ContenitoreBottonePostSingolo {
+.ContenitoreBottoniPostSingolo {
   display: flex;
   justify-content: center; 
   gap: 1em;
   margin-top: 2em;
 }
 
-.bottoneAggiungiti {
-  background-color: #e5f0ff;        /* Azzurro molto chiaro */
-  color: #0055cc;                   /* Blu intenso */
-  border: 1px solid #0055cc;
+.bottoneCancella{
+  background-color: #ffe5e5;
+  color: #cc0000;
+  border: 1px solid #cc0000;
   transition: background-color 0.3s ease;
   font-weight: bold;
   border-radius: 1em;
   padding: 1.5em;
 }
 
-.bottoneAggiungiti:hover {
-  background-color: #cce0ff;        /* Azzurro un po’ più visibile al passaggio */
+.bottoneCancella:hover {
+  background-color: #ffcccc; 
 }
 
-.aggiungitiPopupOverlay{
+.cancellaPopupOverlay{
   position: fixed;
   top: 0;
   left: 0;
@@ -80,12 +74,10 @@
   z-index: 2000;
 }
 
-.aggiungitiPopup{
+.cancellaPopup{
   background: white;
   padding: 20px;
   border-radius: 8px;
   min-width: 250px;
   text-align: center;
 }
-
-

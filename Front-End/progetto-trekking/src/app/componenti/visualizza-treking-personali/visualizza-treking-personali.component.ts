@@ -25,6 +25,9 @@ export class VisualizzaTrekingPersonaliComponent implements OnInit{
       const state = history.state;
       if(state && state.messaggioRegistrazione){
         this.messaggioRegistrazioneTrekking = state.messaggioRegistrazione;
+
+        //resetto lo stato history
+        history.replaceState({}, document.title, this.router.url);
       }
       
       this.visualizzaTrekingPersonali();
@@ -72,6 +75,7 @@ export class VisualizzaTrekingPersonaliComponent implements OnInit{
           this.visualizzaTrekingPersonali();
           this.mostraAvvisoConferma = false;
           this.idTrekkingDaCancellare = null;
+          this.messaggioRegistrazioneTrekking = "Tekking cancellato correttamente!";
         },
         error: (err) => {
           console.error('Errore durante la cancellazione', err);

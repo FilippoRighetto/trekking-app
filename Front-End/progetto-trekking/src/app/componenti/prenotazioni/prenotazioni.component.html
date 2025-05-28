@@ -1,0 +1,33 @@
+    <section  class="visualizzaTrekingAggiunti">
+        <div class="contenitore-messaggio">
+            <div *ngIf="messaggioDisiscrizioneTrekking" class="messaggio-successo">
+                {{ messaggioDisiscrizioneTrekking }}
+            </div>
+        </div>
+        <div class="container-trekking">
+            <div *ngFor="let trekking of mieiTrekking" class="singolo-trekking">
+                <h3>{{ trekking.trekking.titolo }}</h3>
+                <p><strong>Descrizione:</strong> {{ trekking.trekking.descrizione }}</p>
+                <p><strong>Data:</strong> {{ trekking.trekking.data | date:'dd/MM/yyyy' }}</p>
+                <p><strong>Orario:</strong> {{ trekking.trekking.orario }}</p>
+                <p><strong>Luogo:</strong> {{ trekking.trekking.luogo }}</p>
+                <p><strong>Punto Partenza:</strong> {{ trekking.trekking.puntoPartenza }}</p>
+                <p><strong>Difficoltà:</strong> {{ trekking.trekking.difficolta }}</p>
+                <p><strong>Durata Ore:</strong> {{ trekking.trekking.durataOre }}</p>
+                
+                <div class="ContenitoreBottoniPostSingolo" *ngIf="!isDataPassata(trekking.trekking.data)">
+                    <button mat-flat-button  (click)="apriPopupConferma(trekking.trekking.id)" class="bottoneCancella">Disiscriviti</button>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div *ngIf="mostraAvvisoConferma" class="cancellaPopupOverlay">
+            <div class="cancellaPopup">
+                <p>Sei sicuro di voler annullare la partecipazione?</p>
+                <button mat-button color="warn" (click)="togliPrenotazione()">Sì</button>
+                <button mat-button (click)="mostraAvvisoConferma = false">No</button>
+            </div>
+        </div>
+        
+    </section>

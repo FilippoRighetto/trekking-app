@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostTrekingServiceService } from 'src/app/servizi/post-treking-service.service';
+import { PrenotazioneService } from 'src/app/servizi/prenotazione.service';
 
 
 @Component({
@@ -17,8 +18,12 @@ export class VisualizzaPrenotaTrekkingComponent implements OnInit{
     difficoltaMax: null as number | null,
     durataMax: null as number | null
   };
+  mostraAvvisoConferma: boolean = false;
+  idTrekkingPrenotazione: number | null = null;
+  messaggioIscrizioneTrekking = '';
 
-  constructor(private postTrekingService: PostTrekingServiceService, private router: Router){}
+
+  constructor(private postTrekingService: PostTrekingServiceService, private prenotazioneService: PrenotazioneService,  private router: Router){}
   
 
   ngOnInit(): void {
@@ -57,6 +62,28 @@ export class VisualizzaPrenotaTrekkingComponent implements OnInit{
         (!this.filtro.durataMax || t.durataOre <= this.filtro.durataMax)
       )
       .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+  }
+
+  apriPopupPrenotazione(id: number){
+    this.idTrekkingPrenotazione = id;
+    this.mostraAvvisoConferma = true;
+  }
+
+  aggiungitiAllUscita(){
+    this.mostraAvvisoConferma = false;
+    const token = sessionStorage.getItem('authToken');
+    if (token && this.idTrekkingPrenotazione !== null) {
+      this.prenotazioneService.addPartecipazione(this.idTrekkingPrenotazione, token).subscribe({
+        next: () => {
+          console.log('Trekking prenotato con successo!');
+          this.idTrekkingPrenotazione = null;
+          this.messaggioIscrizioneTrekking = "Iscritto correttamente al trekking!";
+        }, 
+        error: (err) =>{
+          console.error('Errore durante la prenotazione', err);
+        }
+      })
+    }
   }
 
 

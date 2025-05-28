@@ -2,11 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.Trekking;
-import com.example.demo.model.Utente;
 import com.example.demo.service.TrekkingService;
 
 @RestController

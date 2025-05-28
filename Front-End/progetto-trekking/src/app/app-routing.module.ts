@@ -9,6 +9,8 @@ import { AggiungiTrekkingComponent } from './componenti/aggiungi-trekking/aggiun
 import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-treking-personali/visualizza-treking-personali.component';
 import { ModificaTrekkingPersonaliComponent } from './componenti/modifica-trekking-personali/modifica-trekking-personali.component';
 import { VisualizzaPrenotaTrekkingComponent } from './componenti/visualizza-prenota-trekking/visualizza-prenota-trekking.component';
+import { PrenotazioneService } from './servizi/prenotazione.service';
+import { PrenotazioniComponent } from './componenti/prenotazioni/prenotazioni.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -18,6 +20,7 @@ const routes: Routes = [
       {path: 'visualizzaPostPubblicati', component: VisualizzaTrekingPersonaliComponent},
       {path: 'modificaTrekPers/:id', component: ModificaTrekkingPersonaliComponent},
       {path: 'visualizzaTuttiTrekking', component: VisualizzaPrenotaTrekkingComponent},
+      {path: 'prenotazioni', component: PrenotazioniComponent},
     ]
   },
   {path:'registrazione', component: RegistrazioneComponent},

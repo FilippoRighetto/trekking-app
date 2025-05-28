@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-treking-personali/visualizza-treking-personali.component';
 import { ModificaTrekkingPersonaliComponent } from './componenti/modifica-trekking-personali/modifica-trekking-personali.component';
 import { VisualizzaPrenotaTrekkingComponent } from './componenti/visualizza-prenota-trekking/visualizza-prenota-trekking.component';
+import { PrenotazioniComponent } from './componenti/prenotazioni/prenotazioni.component';
 
 
 
@@ -44,7 +45,8 @@ import { VisualizzaPrenotaTrekkingComponent } from './componenti/visualizza-pren
     AggiungiTrekkingComponent,
     VisualizzaTrekingPersonaliComponent,
     ModificaTrekkingPersonaliComponent,
-    VisualizzaPrenotaTrekkingComponent
+    VisualizzaPrenotaTrekkingComponent,
+    PrenotazioniComponent
   ],
   imports: [
     BrowserModule,
