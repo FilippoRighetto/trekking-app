@@ -61,11 +61,26 @@
   width: 100%;
 }
 
+
 .button {
   align-self: center;
   min-width: 9em;
   border-radius: 1em;
   padding: 1.5em;
+
+  background-color: #BDB76B !important; 
+  color: black !important;              
+  box-shadow: none !important;
+  transition: background-color 0.3s ease;
+}
+
+.button.mat-button-disabled,
+.button:disabled {
+  background-color: #d3d3a0 !important; 
+  color: #666666 !important;             
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  opacity: 1 !important; 
 }
 
 .errore {
@@ -80,7 +95,7 @@
 }
 
 .linkRegistrati{
-  color: white;
+  color: #BDB76B;
   text-decoration: underline;
 }
 
