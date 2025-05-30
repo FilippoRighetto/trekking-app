@@ -79,6 +79,12 @@ constructor( private postTrekingService: PostTrekingServiceService, private rout
         }
       },
       error: (err) => {
+        if (err.status === 401 && err.error === 'Token scaduto') {
+          alert("Sessione scaduta. Effettua di nuovo il login.");
+          sessionStorage.removeItem("token");
+          this.router.navigate(['/login']);
+        }
+
         this.erroreGenerico = 'Errore di connessione o autorizzazione.';
         console.error(err);
       }

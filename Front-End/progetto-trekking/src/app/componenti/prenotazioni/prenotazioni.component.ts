@@ -43,6 +43,12 @@ export class PrenotazioniComponent implements OnInit{
           this.mieiTrekking = [...futuri, ...passati];
         },
         error: (err) => {
+            if (err.status === 401 && err.error === 'Token scaduto') {
+              alert("Sessione scaduta. Effettua di nuovo il login.");
+              sessionStorage.removeItem("token");
+              this.router.navigate(['/login']);
+            }
+
             console.error('Errore nel recuperare le proprie prenotazioni.', err);
         }
       })
@@ -67,6 +73,12 @@ export class PrenotazioniComponent implements OnInit{
           this.messaggioDisiscrizioneTrekking = "Iscrizione al trekking rimossa correttamente!"
         }, 
         error: (err) => {
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
+
           console.error('Errore durante la cancellazione della prenotazione', err);
         }
       })

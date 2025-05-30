@@ -92,6 +92,13 @@ export class ModificaCredenzialiComponent implements OnInit{
           this.aggiornaUtente();
         },
         error: (err) => {
+
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
+
           console.error("Errore backend completo:", err);
           const backendMsg = err.error?.message || err.error;
 
@@ -124,6 +131,11 @@ export class ModificaCredenzialiComponent implements OnInit{
           this.utente = utente;
         },
         error: (err) =>{
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
           console.log('Errore nel recuperare il profilo: ', err);
         },
       });

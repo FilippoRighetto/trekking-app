@@ -1,28 +1,34 @@
 
 <mat-toolbar class="toolbar">
-  <img src="assets/Immagini/trekking-montagne-pini-adesivo-prespaziato.jpg" class="immagineToolbar" alt="Logo">
-  <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Home</a>
-  <a routerLink="/trekking" routerLinkActive="active-link">Trekking</a>
-  <span class="spacer"></span>
+  <div class="toolbar-left">
+      <img src="assets/Immagini/trekking-montagne-pini-adesivo-prespaziato.jpg" class="immagineToolbar" alt="Logo">
+  </div>
 
-  <span *ngIf="utente.username">
-      <button class="bottoneMenu" [matMenuTriggerFor]="menu">
-        <span class="iconaUtente"><i class="bi bi-person"></i></span>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/modificaCredenziali">
-          <mat-icon><i class="bi bi-pencil-fill"></i></mat-icon>
-          Modifica account
-        </button>
-        <button mat-menu-item (click)="showLogoutConfirm = true">
-            <mat-icon><i class="bi bi-box-arrow-right"></i></mat-icon>         
-            Esci
-        </button>
-      </mat-menu>
-    </span>
+  <div class="toolbar-center">
+      <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Home</a>
+      <a routerLink="/trekking" routerLinkActive="active-link">Trekking</a>
+  </div>
 
-  <button *ngIf="!utente.username" mat-raised-button  routerLink="/login" class="btn-trasparente">Accedi</button>
-  <button *ngIf="utente.username" mat-raised-button  (click)="showLogoutConfirm = true" class="btn-trasparente">Esci</button>
+  <div class="toolbar-right">
+      <span *ngIf="utente.username">
+          <button class="bottoneMenu" [matMenuTriggerFor]="menu">
+            <span class="iconaUtente"><i class="bi bi-person"></i></span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/modificaCredenziali">
+              <mat-icon><i class="bi bi-pencil-fill"></i></mat-icon>
+              Modifica account
+            </button>
+            <button mat-menu-item (click)="showLogoutConfirm = true">
+                <mat-icon><i class="bi bi-box-arrow-right"></i></mat-icon>         
+                Esci
+            </button>
+          </mat-menu>
+        </span>
+
+      <button *ngIf="!utente.username" mat-raised-button  routerLink="/login" class="btn-trasparente">Accedi</button>
+      <!--<button *ngIf="utente.username" mat-raised-button  (click)="showLogoutConfirm = true" class="btn-trasparente">Esci</button>-->
+  </div>
 </mat-toolbar>
 
 <div *ngIf="showLogoutConfirm" class="logout-popup-overlay">
@@ -42,6 +48,26 @@
       </div>
     </div>
 </div>
-
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
+<p>ciao</p>
 
 <!--<app-aggiungi-trekking></app-aggiungi-trekking>-->

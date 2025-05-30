@@ -55,6 +55,11 @@ export class VisualizzaTrekingPersonaliComponent implements OnInit{
           this.mieiTrekking = [...futuri, ...passati];
         },
         error: (err) => {
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
           console.error('Errore nel recuperare i trekking personali', err);
         }
       });
@@ -78,6 +83,11 @@ export class VisualizzaTrekingPersonaliComponent implements OnInit{
           this.messaggioRegistrazioneTrekking = "Tekking cancellato correttamente!";
         },
         error: (err) => {
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
           console.error('Errore durante la cancellazione', err);
         }
       });

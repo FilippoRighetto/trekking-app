@@ -79,12 +79,18 @@ export class LoginComponent implements OnInit{
 
   notificaAppComponentLogin(){
     const token = sessionStorage.getItem('authToken');
-    if (token) {                                              //perchè token non può essere null, quindi dava errore
+    if (token) {                                              
       this.utenteService.getProfile(token).subscribe({
         next: (utente) => {
           this.utenteService.setUtente(utente);
         },
         error: (err) => {
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
+          
           console.error('Errore: ' + err);
         },
       });

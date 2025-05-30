@@ -16,6 +16,7 @@ const routes: Routes = [
   {path:'', component: HomeComponent},
   { path:'trekking', component: PostTrekkingComponent,
     children: [
+      { path: '', redirectTo: 'visualizzaTuttiTrekking', pathMatch: 'full' },
       {path: 'aggiungi', component: AggiungiTrekkingComponent},
       {path: 'visualizzaPostPubblicati', component: VisualizzaTrekingPersonaliComponent},
       {path: 'modificaTrekPers/:id', component: ModificaTrekkingPersonaliComponent},

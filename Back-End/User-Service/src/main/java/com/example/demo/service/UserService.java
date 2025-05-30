@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Utente;
@@ -20,13 +19,11 @@ public class UserService {
 	//ATTRIBUTI
 	private final UserRepository userRepository;
 	private final UtenteLoggatoRepository utenteLoggatoRepository;
-	private final BCryptPasswordEncoder passwordEncoder;
 	
 	//COSTRUTORI
 	public UserService(UserRepository userRepository, UtenteLoggatoRepository utenteLoggatoRepository) {
 		this.userRepository = userRepository;
 		this.utenteLoggatoRepository = utenteLoggatoRepository;
-		this.passwordEncoder = new BCryptPasswordEncoder();
 	}
 	
 	//METODI
@@ -119,7 +116,6 @@ public class UserService {
 		
 		return userRepository.save(currentUser);
 	}
-	
 	
 	
 	

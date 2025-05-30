@@ -4,12 +4,30 @@
           TOOLBAR
 ****************************/
 .toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0); 
   color: white;
   position: fixed; 
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
+}
+
+.toolbar-left,
+.toolbar-center,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+
+.toolbar-center {
+  justify-content: center;
+  flex-grow: 1;
+  gap: 3em;
 }
 
 
@@ -17,12 +35,11 @@
   height: 7.5em;  
 }
 
-.toolbar a{
+.toolbar a {
   color: white;
   text-decoration: none;
   font-size: 1.2em;
   font-weight: 300;
-  margin-left: 25px;
 }
 
 .toolbar a:hover {

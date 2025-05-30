@@ -3,7 +3,6 @@ package com.example.demo.filter;
 import java.io.IOException;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.model.Utente;
 import com.example.demo.model.UtenteLoggato;
 import com.example.demo.service.UserService;
 import jakarta.servlet.*;

@@ -1,0 +1,99 @@
+.sezionePrincipale {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 90vh;
+  padding: 0 4vw;
+}
+
+.contenitoreTitolo {
+  margin-top: 14%;
+  margin-left: 6vw;
+  margin-right: 2vw;
+  max-width: 40em;
+  text-align: left;
+}
+
+.titoloHomePage {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5vw;
+  font-weight: 900; /* Più spesso e d’impatto */
+  letter-spacing: 5px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.sottoTitolo {
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-top: 1.2em;
+  line-height: 1.6;
+  max-width: 30em;
+}
+
+.contenioreCerchi {
+  display: flex;
+  justify-content: flex-end;   /* Allinea contenuto a destra (orizzontale) */
+  align-items: flex-end;       /* Allinea contenuto in basso (verticale) */
+  height: 100%;
+  width: 100%;
+}
+
+.prova {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;       /* Allinea i cerchi a destra */
+  justify-content: flex-end;   /* Spinge i cerchi verso il basso */
+  margin-bottom: 25vh;
+}
+
+
+
+.itemCerchio {
+  display: flex;
+  flex-direction: row;         /* cerchio + etichetta affiancati */
+  align-items: center;
+}
+
+.etichetta {
+  writing-mode: vertical-rl; /* testo verticale */
+  transform: rotate(360deg); /* testo leggibile dall’alto verso il basso */
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  margin-left: 0.5em;
+  height: 6em;
+  font-size: 1em;
+  opacity: 0.9;
+}
+
+.cerchio {
+    margin-bottom: 2em;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 6em;
+    width: 6em;
+    border-radius: 50%;
+    display: flex;              /* usa flexbox */
+    justify-content: center;    /* centra orizzontalmente */
+    align-items: center;        /* centra verticalmente */
+    overflow: hidden;           /* taglia eventuali parti che escono */
+}
+
+.iconaHiking {
+    width: 10em;
+    object-fit: contain;  /* mantiene proporzioni */
+}
+
+.iconaTrekking{
+    width: 7em;
+    object-fit: contain;
+}
+
+.iconaClimbing{
+    
+    width: 7em;
+    object-fit: contain;
+}

@@ -47,6 +47,12 @@ export class VisualizzaPrenotaTrekkingComponent implements OnInit{
 
         },
         error: (err) => {
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
+
           console.error('Errore nel recuperare i trekking personali', err);
         }
       });
@@ -80,6 +86,11 @@ export class VisualizzaPrenotaTrekkingComponent implements OnInit{
           this.messaggioIscrizioneTrekking = "Iscritto correttamente al trekking!";
         }, 
         error: (err) =>{
+          if (err.status === 401 && err.error === 'Token scaduto') {
+            alert("Sessione scaduta. Effettua di nuovo il login.");
+            sessionStorage.removeItem("token");
+            this.router.navigate(['/login']);
+          }
           console.error('Errore durante la prenotazione', err);
         }
       })

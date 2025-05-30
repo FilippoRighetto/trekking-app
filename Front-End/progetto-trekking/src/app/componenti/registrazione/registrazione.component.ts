@@ -65,6 +65,12 @@ export class RegistrazioneComponent implements OnInit{
         form.resetForm();
       },
       error: (err) => {
+        if (err.status === 401 && err.error === 'Token scaduto') {
+          alert("Sessione scaduta. Effettua di nuovo il login.");
+          sessionStorage.removeItem("token");
+          this.router.navigate(['/login']);
+        }
+
         console.error("Errore nella registrazione:", err);
 
         const backendMsg = err.error?.message;
