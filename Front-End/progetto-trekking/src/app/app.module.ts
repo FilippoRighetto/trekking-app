@@ -31,6 +31,7 @@ import { VisualizzaTrekingPersonaliComponent } from './componenti/visualizza-tre
 import { ModificaTrekkingPersonaliComponent } from './componenti/modifica-trekking-personali/modifica-trekking-personali.component';
 import { VisualizzaPrenotaTrekkingComponent } from './componenti/visualizza-prenota-trekking/visualizza-prenota-trekking.component';
 import { PrenotazioniComponent } from './componenti/prenotazioni/prenotazioni.component';
+import { FooterComponent } from './componenti/footer/footer.component';
 
 
 
@@ -46,7 +47,8 @@ import { PrenotazioniComponent } from './componenti/prenotazioni/prenotazioni.co
     VisualizzaTrekingPersonaliComponent,
     ModificaTrekkingPersonaliComponent,
     VisualizzaPrenotaTrekkingComponent,
-    PrenotazioniComponent
+    PrenotazioniComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

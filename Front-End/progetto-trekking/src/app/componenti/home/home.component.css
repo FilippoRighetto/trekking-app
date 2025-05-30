@@ -35,6 +35,24 @@
   max-width: 30em;
 }
 
+.contenitoreScopriTrekking{
+  margin-top: 5em;
+}
+
+.btn-scopriTrekking {
+  background-color: #BDB76B;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6em 1.2em;
+  transition: background-color 0.3s ease;
+}
+
+.btn-scopriTrekking:hover {
+  background-color: #A9A04F; /* più scuro e naturale */
+  cursor: pointer;
+}
+
 .contenioreCerchi {
   display: flex;
   justify-content: flex-end;   /* Allinea contenuto a destra (orizzontale) */
@@ -72,7 +90,7 @@
 
 .cerchio {
     margin-bottom: 2em;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(189, 183, 107, 0.5);
     height: 6em;
     width: 6em;
     border-radius: 50%;
