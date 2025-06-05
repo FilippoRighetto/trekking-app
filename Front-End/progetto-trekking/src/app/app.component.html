@@ -11,21 +11,24 @@
 
       <div class="toolbar-right">
           <span *ngIf="utente.username">
-              <button class="bottoneMenu" [matMenuTriggerFor]="menu">
-                <span class="iconaUtente"><i class="bi bi-person"></i></span>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/modificaCredenziali">
-                  <mat-icon><i class="bi bi-pencil-fill"></i></mat-icon>
-                  Modifica account
-                </button>
-                <button mat-menu-item (click)="showLogoutConfirm = true">
-                    <mat-icon><i class="bi bi-box-arrow-right"></i></mat-icon>         
-                    Esci
-                </button>
-              </mat-menu>
-            </span>
+            <button class="bottoneMenu" [matMenuTriggerFor]="menu">
+              <span class="iconaUtente">
+                <i class="bi bi-person-circle"></i>
+              </span>
+            </button>
 
+            <mat-menu #menu="matMenu" class="menuUtente">
+              <button mat-menu-item routerLink="/modificaCredenziali">
+                <i class="bi bi-pencil-fill iconaMenu"></i>
+                <span>Modifica account</span>
+              </button>
+
+              <button mat-menu-item (click)="showLogoutConfirm = true">
+                <i class="bi bi-box-arrow-right iconaMenu iconaEsci"></i>
+                <span>Esci</span>
+              </button>
+            </mat-menu>
+          </span>
           <button *ngIf="!utente.username" mat-raised-button  routerLink="/login" class="btn-trasparente">Accedi</button>
           <!--<button *ngIf="utente.username" mat-raised-button  (click)="showLogoutConfirm = true" class="btn-trasparente">Esci</button>-->
       </div>

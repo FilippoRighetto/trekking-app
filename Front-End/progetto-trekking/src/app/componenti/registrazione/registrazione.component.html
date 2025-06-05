@@ -44,28 +44,63 @@
             </div>
 
             <div class="rigaCampi">
-                <mat-form-field class="campoStondato">
+            <mat-form-field class="campoStondato">
                 <mat-label>
-                    <i class="bi bi-lock-fill"></i>
-                    Password
+                <i class="bi bi-lock-fill"></i>
+                Password
                 </mat-label>
-                <input matInput type="password" name="password" [(ngModel)]="this.password.pass" required minlength="6" #passwordModel="ngModel" placeholder="Password">
-                <mat-error *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)">
-                    Password troppo corta (min 6 caratteri)
-                </mat-error>
-                </mat-form-field>
 
-                <mat-form-field class="campoStondato">
-                <mat-label>
-                    <i class="bi bi-lock-fill"></i>
-                    Conferma password
-                </mat-label>
-                <input matInput type="password" name="confermaPassword" [(ngModel)]="password.confPass" required minlength="6" #confermaModel="ngModel" placeholder="Conferma password">
-                <mat-error *ngIf="confermaModel.invalid && (confermaModel.dirty || confermaModel.touched)">
-                    Password troppo corta (min 6 caratteri)
+                <input matInput
+                    [type]="passwordVisibile ? 'text' : 'password'"
+                    name="password"
+                    [(ngModel)]="password.pass"
+                    required
+                    minlength="6"
+                    #passwordModel="ngModel"
+                    placeholder="Password">
+
+                <button mat-icon-button
+                        matSuffix
+                        tabindex="-1"
+                        type="button"
+                        (click)="passwordVisibile = !passwordVisibile">
+                <i class="bi" [ngClass]="passwordVisibile ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+
+                <mat-error *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)">
+                Password troppo corta (min 6 caratteri)
                 </mat-error>
-                </mat-form-field>
+            </mat-form-field>
+
+            <mat-form-field class="campoStondato">
+                <mat-label>
+                <i class="bi bi-lock-fill"></i>
+                Conferma password
+                </mat-label>
+
+                <input matInput
+                    [type]="confermaPasswordVisibile ? 'text' : 'password'"
+                    name="confermaPassword"
+                    [(ngModel)]="password.confPass"
+                    required
+                    minlength="6"
+                    #confermaModel="ngModel"
+                    placeholder="Conferma password">
+
+                <button mat-icon-button
+                        matSuffix
+                        tabindex="-1"
+                        type="button"
+                        (click)="confermaPasswordVisibile = !confermaPasswordVisibile">
+                <i class="bi" [ngClass]="confermaPasswordVisibile ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+
+                <mat-error *ngIf="confermaModel.invalid && (confermaModel.dirty || confermaModel.touched)">
+                Password troppo corta (min 6 caratteri)
+                </mat-error>
+            </mat-form-field>
             </div>
+
 
             <button mat-flat-button class="button" [disabled]="controllaCampiForm()" color="primary">Registrati</button>
             </form>
@@ -76,7 +111,7 @@
         </div>
 
         <p class="scrittaAccedi">
-            Hai già un account?<a mat-button class="linkAccedi" routerLink="/login"><strong>ACCEDI</strong></a>
+            Hai già un account?<a class="linkAccedi" routerLink="/login"><strong>ACCEDI</strong></a>
         </p>
     </div>
 </section>

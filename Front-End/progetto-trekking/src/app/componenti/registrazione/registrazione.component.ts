@@ -24,6 +24,8 @@ export class RegistrazioneComponent implements OnInit{
   }
   erroreCredenziali: string = '';
   erroreGenerico: string = '';
+  passwordVisibile: boolean = false;
+  confermaPasswordVisibile: boolean = false;
 
 
   constructor(private utenteService: UtenteService, private router: Router){}

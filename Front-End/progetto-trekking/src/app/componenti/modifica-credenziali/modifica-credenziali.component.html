@@ -1,23 +1,26 @@
 <section class="contenitoreRegistrazione"> 
-  <div class="overlay"></div> <!-- Layer semitrasparente sopra lo sfondo -->
-
+  <div class="overlay"></div> 
   <div class="credenzialiRegistrazione">
     <div *ngIf="modificaForm" class="visualDati">
-        <a mat-flat-button class="tornaVisDettagli" color="primary" (click)="apriChiudiModificaForm()"><strong><i class="bi bi-arrow-left"></i></strong></a>
+        <button mat-flat-button class="tornaVisDettagli" (click)="apriChiudiModificaForm()"><strong><i class="bi bi-arrow-left"></i></strong></button>
     </div>
-    <p class="formTitle">Credenziali account</p>
+
+    <p class="formTitle"><strong>Credenziali account</strong></p>
+
+    <p *ngIf="modificaCredenziali" class="messaggio-successo">Credenziali modificate correttamente!</p>
+
     
-    <div *ngIf="!modificaForm">
-        <div class="contenitoreCredenziali">
+    <div *ngIf="!modificaForm" class="contenitoreCredenziali">
+        <div class="credenziali">
             <mat-list role="list">
-                <mat-list-item role="listitem"><strong>Nome: </strong>{{utente.nome}}</mat-list-item>
-                <mat-list-item role="listitem"><strong>Cognome: </strong>{{utente.cognome}}</mat-list-item>
-                <mat-list-item role="listitem"><strong>Email: </strong>{{utente.email}}</mat-list-item>
-                <mat-list-item role="listitem"><strong>Username: </strong>{{utente.username}}</mat-list-item>
+                <mat-list-item role="listitem"><span class="credSing"><strong>Nome: </strong>{{utente.nome}}</span></mat-list-item>
+                <mat-list-item role="listitem"><span class="credSing"><strong>Cognome: </strong>{{utente.cognome}}</span></mat-list-item>
+                <mat-list-item role="listitem"><span class="credSing"><strong>Email: </strong>{{utente.email}}</span></mat-list-item>
+                <mat-list-item role="listitem"><span class="credSing"><strong>Username: </strong>{{utente.username}}</span></mat-list-item>
             </mat-list>
         </div>
             <p class="fraseModificaDati">
-                Se desideri modificare i tuoi dati<a mat-button class="modificaDati" (click)="apriChiudiModificaForm()"><strong>Modifica</strong></a>
+                Se desideri modificare i tuoi dati<a class="modificaDati" (click)="apriChiudiModificaForm()"><strong>Modifica</strong></a>
             </p>
     </div>
     <div class="contenitoreForm"  *ngIf="modificaForm">
@@ -89,7 +92,8 @@
                     </mat-form-field>
                 </div>
             </section>
-            <button mat-flat-button class="button" color="primary">Salva</button>
+            <button mat-flat-button class="button">Salva</button>
+
         </form>
     </div>
     <div class="errore">

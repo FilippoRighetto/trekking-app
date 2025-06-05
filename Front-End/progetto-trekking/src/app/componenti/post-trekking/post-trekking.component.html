@@ -13,9 +13,15 @@
     <!-- Colonna sinistra -->
     <div class="colonnaLateraleSx">
       <nav class="menuLaterale">
-        <a class="listaPartecipa" routerLink="/trekking/visualizzaTuttiTrekking" routerLinkActive="attivo" (click)="visualizzaBottNav=false">🥾 Partecipa ad un trekking</a>
-        <a routerLink="/trekking/visualizzaPostPubblicati" routerLinkActive="attivo" (click)="visualizzaBottNav=true">I tuoi trekking pubblicati</a>
-        <a routerLink="/trekking/prenotazioni" routerLinkActive="attivo" (click)="visualizzaBottNav=false" >Le tue penotazioni</a>
+          <a routerLink="/trekking/visualizzaTuttiTrekking" routerLinkActive="attivo" (click)="visualizzaBottNav=false">
+            <i class="bi bi-binoculars"></i> Partecipa ad un trekking
+          </a>
+          <a routerLink="/trekking/visualizzaPostPubblicati" routerLinkActive="attivo" (click)="visualizzaBottNav=true">
+            <i class="bi bi-send"></i> I tuoi trekking pubblicati
+          </a>
+          <a routerLink="/trekking/prenotazioni" routerLinkActive="attivo" (click)="visualizzaBottNav=false">
+            <i class="bi bi-calendar-check"></i> Le tue prenotazioni
+          </a>
       </nav>
     </div>
 

@@ -82,6 +82,13 @@
   opacity: 1 !important; 
 }
 
+.bi.bi-eye{
+  color: gray;
+}
+.bi.bi-eye-slash{
+  color: gray;
+}
+
 .errore {
   font-size: large;
   color: red;
@@ -89,13 +96,24 @@
 }
 
 .scrittaRegistrati{
-  margin-top: 2em;
+  margin-top: 3em;
   color: white;
 }
 
-.linkRegistrati{
+.linkRegistrati {
   color: #BDB76B;
-  text-decoration: underline;
+  margin-left: 0.5em;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1em;
+  transition: font-size 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.linkRegistrati:hover {
+  font-size: 1.1em;
+  color: #d1c86b; 
+  text-decoration: none;
 }
 
 

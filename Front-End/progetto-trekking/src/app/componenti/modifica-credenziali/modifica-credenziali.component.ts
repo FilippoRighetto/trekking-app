@@ -29,6 +29,7 @@ export class ModificaCredenzialiComponent implements OnInit{
   emailError: string = '';
 
   modificaForm: boolean = false;
+  modificaCredenziali: boolean=false;
   erroreCredenziali: string = '';
   erroreGenerico: string = '';
 
@@ -90,6 +91,8 @@ export class ModificaCredenzialiComponent implements OnInit{
         next: (utente) => {
           console.log("Modifica effettuata");
           this.aggiornaUtente();
+          this.modificaCredenziali = true;
+          this.apriChiudiModificaForm();
         },
         error: (err) => {
 
@@ -143,7 +146,13 @@ export class ModificaCredenzialiComponent implements OnInit{
   }
 
   apriChiudiModificaForm(){
-    this.modificaForm==true ? this.modificaForm=false : this.modificaForm=true;
+
+    if(this.modificaForm==true){
+      this.modificaForm = false;
+    }else{
+      this.modificaForm = true;
+      this.modificaCredenziali = false
+    }
   }
 
 

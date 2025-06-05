@@ -20,12 +20,29 @@
             </mat-error>
           </mat-form-field>
 
+
           <mat-form-field class="campoStondato">
             <mat-label>
               <i class="bi bi-lock-fill"></i>
               Password
             </mat-label>
-            <input matInput type="password" name="password" [(ngModel)]="utente.password" required #password="ngModel" placeholder="Password">
+
+            <input matInput
+                  [type]="passwordVisibile ? 'text' : 'password'"
+                  name="password"
+                  [(ngModel)]="utente.password"
+                  required
+                  #password="ngModel"
+                  placeholder="Password">
+
+            <button mat-icon-button
+                    matSuffix
+                    tabindex="-1"
+                    type="button"
+                    (click)="passwordVisibile = !passwordVisibile">
+                <i class="bi" [ngClass]="passwordVisibile ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+
             <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
               Inserisci la password
             </mat-error>
@@ -41,7 +58,7 @@
       </div>
 
       <p class="scrittaRegistrati">
-        Non hai ancora un account?<a mat-button class="linkRegistrati" routerLink="/registrazione"><strong>REGISTRATI</strong></a>
+        Non hai ancora un account?<a class="linkRegistrati" routerLink="/registrazione"><strong>REGISTRATI</strong></a>
       </p>
     </div>
 </section>

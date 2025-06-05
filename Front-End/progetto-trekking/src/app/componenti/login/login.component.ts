@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { UtenteService } from 'src/app/servizi/utente.service';
 import { Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
 import * as bcrypt from 'bcryptjs';
 
 
@@ -21,6 +20,7 @@ export class LoginComponent implements OnInit{
   erroreGenerico: string = '';
   erroreEmailPass: string = '';
   messaggioRegistrazione: string = '';
+  passwordVisibile: boolean = false;
 
   constructor(private utenteService: UtenteService, private router: Router){}
 
