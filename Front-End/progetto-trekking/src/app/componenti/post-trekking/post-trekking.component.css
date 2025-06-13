@@ -1,3 +1,60 @@
+/***********************
+SEZIONE BISOGNA LOGGARSI
+************************/
+.errore-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+
+.errore-container {
+  background-color: rgba(255, 255, 255, 0.85); /* sfondo chiaro semi-trasparente */
+  padding: 30px 20px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.errore-title {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.errore-message {
+  font-size: 1.1em;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.errore-button {
+  background-color: #99924F;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.errore-button:hover {
+  background-color: #7e7a3f;
+}
+
+
+
+
+
+/*************************
+SEZIONE POST TREKKING
+**************************/
+
 .sezioneTreking {
   width: 97vw;
   height: 85vh;

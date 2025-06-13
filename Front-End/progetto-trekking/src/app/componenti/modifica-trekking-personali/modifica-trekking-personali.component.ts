@@ -61,35 +61,45 @@ constructor( private postTrekingService: PostTrekingServiceService, private rout
   }
 }
 
-  onSubmit(form: NgForm){
-    const token = sessionStorage.getItem('authToken');
-    if (!token) {
-      this.erroreGenerico = 'Devi essere autenticato per modificare il trekking.';
-      return;
-    }
-
-    this.postTrekingService.modificaTrekking(this.trekking.id, this.trekking, token).subscribe({
-      next: (success) => {
-        if (success) {
-          this.router.navigate(['/trekking/visualizzaPostPubblicati'],{
-            state: {messaggioRegistrazione: 'Il treking "'+ this.trekking.titolo +'" è stato modificato correttamente!'}
-          }); 
-        } else {
-          this.erroreGenerico = 'Errore nella modifica del trekking.';
-        }
-      },
-      error: (err) => {
-        if (err.status === 401 && err.error === 'Token scaduto') {
-          alert("Sessione scaduta. Effettua di nuovo il login.");
-          sessionStorage.removeItem("token");
-          this.router.navigate(['/login']);
-        }
-
-        this.erroreGenerico = 'Errore di connessione o autorizzazione.';
-        console.error(err);
-      }
-    });
+onSubmit(form: NgForm){
+  const token = sessionStorage.getItem('authToken');
+  if (!token) {
+    this.erroreGenerico = 'Devi essere autenticato per modificare il trekking.';
+    return;
   }
+
+  // FORZA LA DATA A MEZZOGIORNO PER EVITARE PROBLEMI DI FUSO ORARIO
+  const dataOriginale = this.trekking.data;
+  this.trekking.data = new Date(
+    dataOriginale.getFullYear(),
+    dataOriginale.getMonth(),
+    dataOriginale.getDate(),
+    12, 0, 0
+  );
+
+  this.postTrekingService.modificaTrekking(this.trekking.id, this.trekking, token).subscribe({
+    next: (success) => {
+      if (success) {
+        this.router.navigate(['/trekking/visualizzaPostPubblicati'],{
+          state: {messaggioRegistrazione: 'Il trekking "'+ this.trekking.titolo +'" è stato modificato correttamente!'}
+        }); 
+      } else {
+        this.erroreGenerico = 'Errore nella modifica del trekking.';
+      }
+    },
+    error: (err) => {
+      if (err.status === 401 && err.error === 'Token scaduto') {
+        alert("Sessione scaduta. Effettua di nuovo il login.");
+        sessionStorage.removeItem("token");
+        this.router.navigate(['/login']);
+      }
+
+      this.erroreGenerico = 'Errore di connessione o autorizzazione.';
+      console.error(err);
+    }
+  });
+}
+
 
   controllaCampiForm(){
     if(this.trekking.titolo && this.trekking.descrizione && this.trekking.data && this.trekking.orario && this.trekking.luogo && this.trekking.puntoPartenza && this.trekking.difficolta && this.trekking.durataOre){

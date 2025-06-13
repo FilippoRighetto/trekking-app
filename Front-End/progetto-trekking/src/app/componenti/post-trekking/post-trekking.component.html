@@ -1,11 +1,13 @@
 <section *ngIf="!utenteLoggato" class="errore-login">
-  <mat-card>
-    <mat-card-content>
-      <p>Devi prima loggarti per accedere a questa pagina.</p>
-      <p>Effettua qui il <button mat-button color="accent" (click)="vaiALogin()">Login</button></p>
-    </mat-card-content>
-  </mat-card>
+  <div class="errore-container">
+    <h2 class="errore-title">Accesso richiesto</h2>
+    <p class="errore-message">Per accedere a questa pagina devi prima effettuare il login.</p>
+    <button class="errore-button" (click)="vaiALogin()">Login</button>
+  </div>
 </section>
+
+
+
 
 <section *ngIf="utenteLoggato" class="sezioneTreking">
   <div class="contenitoreTreking">

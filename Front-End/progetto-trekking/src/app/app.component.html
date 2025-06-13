@@ -34,13 +34,17 @@
       </div>
     </mat-toolbar>
 
-    <div *ngIf="showLogoutConfirm" class="logout-popup-overlay">
-      <div class="logout-popup">
-        <p>Sei sicuro di voler uscire?</p>
-        <button mat-button color="warn" (click)="logout()">Sì</button>
-        <button mat-button (click)="showLogoutConfirm = false">No</button>
-      </div>
+<div *ngIf="showLogoutConfirm" class="logout-popup-overlay">
+  <div class="logout-popup">
+    <p>Sei sicuro di voler uscire?</p>
+    <div class="logout-buttons">
+      <button class="btn btn-yes" (click)="logout()">Sì</button>
+      <button class="btn btn-no" (click)="showLogoutConfirm = false">No</button>
     </div>
+  </div>
+</div>
+
+
 
     <div class="sfondo  ">
         <div class="overlay">

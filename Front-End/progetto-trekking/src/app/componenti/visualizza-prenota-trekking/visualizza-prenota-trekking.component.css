@@ -1,11 +1,12 @@
-.filtri-trekking{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 2em;
+.filtri-trekking {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2em;
 }
+
 
 .contenitore-messaggio {
   display: flex;
@@ -55,8 +56,8 @@
 
 .bottoneAggiungiti {
   background-color: #e5f0ff;        /* Azzurro molto chiaro */
-  color: #0055cc;                   /* Blu intenso */
-  border: 1px solid #0055cc;
+  color: #6b8e23;                   /* Blu intenso */
+  border: 1px solid #6b8e23;
   transition: background-color 0.3s ease;
   font-weight: bold;
   border-radius: 1em;
@@ -67,7 +68,12 @@
   background-color: #cce0ff;        /* Azzurro un po’ più visibile al passaggio */
 }
 
-.aggiungitiPopupOverlay{
+
+/*************************
+  POPUP OVERLAY
+*************************/
+
+.logout-popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -80,12 +86,47 @@
   z-index: 2000;
 }
 
-.aggiungitiPopup{
+.logout-popup {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 30px;
+  border-radius: 2em;
   min-width: 250px;
   text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.logout-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.btn-yes {
+  background-color: #BDB76B;
+  color: white;
+}
+
+.btn-yes:hover {
+  background-color: #a5a04d;
+}
+
+.btn-no {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-no:hover {
+  background-color: #bdbdbd;
 }
 
 

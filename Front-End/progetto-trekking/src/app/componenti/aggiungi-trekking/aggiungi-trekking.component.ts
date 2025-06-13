@@ -110,7 +110,10 @@ export class AggiungiTrekkingComponent implements OnInit{
   }
 
   formattaData(data: Date): string {
-    return data.toISOString().split('T')[0]; // "YYYY-MM-DD"
+    const anno = data.getFullYear();
+    const mese = this.pad(data.getMonth() + 1); // Mese parte da 0
+    const giorno = this.pad(data.getDate());
+    return `${anno}-${mese}-${giorno}`;
   }
 
   formattaOra(ora: string): string {

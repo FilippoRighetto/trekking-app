@@ -1,4 +1,4 @@
-<section class="filtri-trekking">
+<section class="filtri-trekking campoStondato">
   <mat-form-field>
     <mat-label>Testo</mat-label>
     <input matInput [(ngModel)]="filtro.testo" placeholder="Titolo, luogo...">
@@ -43,12 +43,16 @@
             </div>
         </div>
     </div>
-    <div *ngIf="mostraAvvisoConferma" class="aggiungitiPopupOverlay">
-      <div class="aggiungitiPopup">
-          <p>Vuoi confermare la prenotazione?</p>
-          <button mat-button color="primary" (click)="aggiungitiAllUscita()">Sì</button>
-          <button mat-button (click)="mostraAvvisoConferma = false">No</button>
+
+  <div *ngIf="mostraAvvisoConferma" class="logout-popup-overlay">
+    <div class="logout-popup">
+      <p>Vuoi confermare la prenotazione?</p>
+      <div class="logout-buttons">
+        <button class="btn btn-yes" (click)="aggiungitiAllUscita()">Sì</button>
+        <button class="btn btn-no" (click)="mostraAvvisoConferma = false">No</button>
       </div>
+    </div>
   </div>
+
 </section>
 

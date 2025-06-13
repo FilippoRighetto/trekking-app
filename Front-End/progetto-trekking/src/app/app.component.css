@@ -135,7 +135,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); 
+  background-color: rgba(0, 0, 0, 0.4); 
   z-index: 1;
 }
 
@@ -191,10 +191,47 @@ router-outlet{
 
 .logout-popup {
   background: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 2em;
   min-width: 250px;
   text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
+
+.logout-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.btn-yes {
+  background-color: #BDB76B;
+  color: white;
+}
+
+.btn-yes:hover {
+  background-color: #a5a04d;
+}
+
+.btn-no {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-no:hover {
+  background-color: #bdbdbd;
+}
+
+
 
 

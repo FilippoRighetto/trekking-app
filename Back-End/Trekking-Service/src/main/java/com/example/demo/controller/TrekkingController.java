@@ -46,7 +46,6 @@ public class TrekkingController {
         return success;
     }
     
-
     @GetMapping("/visualizzaSingolo/{id}")
     public Trekking getTrekkingById(@PathVariable Long id) {
         return trekkingService.getTrekkingById(id);
